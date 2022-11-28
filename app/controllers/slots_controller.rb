@@ -1,0 +1,3 @@
+class SlotsController < ApplicationController
+  
+end
