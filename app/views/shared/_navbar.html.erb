@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <div class="ez2schedule-logo">Ez2<i class="fa-regular fa-calendar-days"></i></div>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,9 +26,9 @@
             </div>
           </li>
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-             <%= link_to "SignUp", new_user_registration_path, class: "nav-link" %>
+          <li class="nav-item d-flex">
+            <%= link_to "Login", new_user_session_path, class: "nav-link m-1" %>
+             <%= link_to "SignUp", new_user_registration_path, class: "nav-link m-1" %>
           </li>
         <% end %>
       </ul>
