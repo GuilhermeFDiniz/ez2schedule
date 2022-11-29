@@ -1,5 +1,4 @@
-<h1>Pages#home</h1>
-
+  <h1>Pages#home</h1>
 
 <%= week_calendar(events: @appointments, end_attribute: :end_time) do |date, appointments| %>
   <% (@teacher.start_time.hour..@teacher.end_time.hour).each do |hour| %>
