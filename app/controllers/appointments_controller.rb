@@ -5,6 +5,23 @@ class AppointmentsController < ApplicationController
     @appointments = Appointment.all
   end
 
+  def new
+    @appointment = Appointment.new
+    # @teacher = Teacher.find(params[:teachder_id])
+    @teacher = Teacher.find(2)
+    
+    @categories = @teacher.categories
+  end
+
+  def create
+    @appointment = Appointment.new(appointment_params)
+    if @appointment.save
+      redirect_to appointments_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def show
     @appointment = Appointment.new
   end

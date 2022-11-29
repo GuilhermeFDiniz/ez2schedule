@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_29_172106) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_29_203508) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172106) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "remote"
     t.index ["teacher_id"], name: "index_appointments_on_teacher_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
@@ -42,6 +43,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172106) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "teacher_categories", force: :cascade do |t|
+    t.bigint "teacher_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_teacher_categories_on_category_id"
+    t.index ["teacher_id"], name: "index_teacher_categories_on_teacher_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -59,16 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172106) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "in_person"
     t.index ["user_id"], name: "index_teachers_on_user_id"
-  end
-
-  create_table "user_categories", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_user_categories_on_category_id"
-    t.index ["user_id"], name: "index_user_categories_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,7 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172106) do
   add_foreign_key "appointment_categories", "categories"
   add_foreign_key "appointments", "teachers"
   add_foreign_key "appointments", "users"
+  add_foreign_key "teacher_categories", "categories"
+  add_foreign_key "teacher_categories", "teachers"
   add_foreign_key "teachers", "users"
-  add_foreign_key "user_categories", "categories"
-  add_foreign_key "user_categories", "users"
 end
