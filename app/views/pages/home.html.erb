@@ -1,13 +1,13 @@
 <h1>Pages#home</h1>
 
-<%= @slots.each do |slot| %>
-<%#<%= link_to slot_path(slot) do %>
+<%= @appointments.each do |appointment| %>
+<%#<%= link_to appointment_path(appointment) do %>
 <div>
-<%# <%= slot.user.perfil_video %>
+<%# <%= appointment.user.perfil_video %>
 </div>
 <div>
-<h5><%= slot.user.first_name %></h5>
-<h5><%= slot.price %></h5>
+<h5><%= appointment.user.first_name %></h5>
+<h5><%= appointment.price %></h5>
 </div>
 <% end %>
 <%#<% end %>
