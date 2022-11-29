@@ -2,6 +2,8 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
+    @teacher = Teacher.find(params[:teachder_id])
+    @categories = @teacher.categories
   end
 
   def create
