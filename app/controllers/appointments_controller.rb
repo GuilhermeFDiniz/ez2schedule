@@ -1,4 +1,5 @@
 class AppointmentsController < ApplicationController
+
   before_action :set_appointment, only: %i[ destroy edit update show ]
 
   def index
@@ -30,8 +31,7 @@ class AppointmentsController < ApplicationController
   def set_appointment
     @appointment = Appointment.find(params[:id])
   end
-
-  # Only allow a list of trusted parameters through.
+  
   def appointment_params
     params.require(:appointment).permit(:start_time, :end_time, :category_id)
   end
