@@ -1,5 +1,4 @@
 class AppointmentsController < ApplicationController
-
   before_action :set_appointment, only: %i[ destroy edit update show ]
 
   def index
@@ -27,13 +26,12 @@ class AppointmentsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_appointment
     @appointment = Appointment.find(params[:id])
   end
-  
+
   def appointment_params
     params.require(:appointment).permit(:start_time, :end_time, :category_id)
   end
-
 end
