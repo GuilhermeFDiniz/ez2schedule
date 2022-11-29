@@ -1,0 +1,13 @@
+<%= simple_form_for @teacher do |f| %>
+  <%= f.input :monday, :as => :check_boxes %>
+  <%= f.input :tuesday, :as => :check_boxes %>
+  <%= f.input :wednesday, :as => :check_boxes %>
+  <%= f.input :thursday, :as => :check_boxes %>
+  <%= f.input :friday, :as => :check_boxes %>
+  <%= f.input :saturday, :as => :check_boxes %>
+  <%= f.input :sunday, :as => :check_boxes %>
+  <%= f.input :price %>
+  <%= f.input :remote, as => :check_boxes %>
+  <%= f.input :in_person, as => :check_boxes %>
+  <%= f.button :submit %>
+<% end %>
