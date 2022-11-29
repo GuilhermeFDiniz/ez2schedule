@@ -1,14 +1,11 @@
   <h1>Pages#home</h1>
-  
-  <p>Find me in app/views/pages/home.html.erb</p>
 
-  <div>
+<%= week_calendar(events: @appointments, end_attribute: :end_time) do |date, appointments| %>
+  <% (@teacher.start_time.hour..@teacher.end_time.hour).each do |hour| %>
+    <div class="teacher-slot">
+      <%= hour %>
+      <%= @appointments.find_by(start_time: date.to_datetime.change({hour: hour}))&.description %>
+    </div>
+  <% end %>
 
-  <h1 class="text-primary"> Achieve your goals: we help you to code </h1>
-  <h2> Find a teacher </h2>
-  <h2> Choose the best time </h2>
-  <h2> Code now </h2>
-
-  <h2>Pick from 10 differents code languages</h2>
-
-  </div>
+<% end %>
