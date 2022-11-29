@@ -9,7 +9,7 @@ Appointment.destroy_all
 Teacher.destroy_all
 User.destroy_all
 
-<<<<<<< HEAD
+
 user1 = User.create!(email: 'gui@gui', password: '123123')
 teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: false, sunday:false, start_time: '08:00'.to_time, end_time: '18:00'.to_time)
 
@@ -26,7 +26,7 @@ date2 = DateTime.new(year,month,day2,8,0,0)
 
 Appointment.create(description: 'Ruby',  teacher: teacher, user: user2, start_time: date1 ,end_time: date1 + 1.hour)
 Appointment.create(description: 'React',  teacher: teacher, user: user2, start_time: date2 ,end_time: date2 + 1.hour)
-=======
+
 Category.create!(name: 'HTML', image: 'https://www.shecodes.io/assets/logos/technologies/html-0604a6b4c136a971d7ea5d7f5941216ae895093c636027fc3ac53297fea9a502.png')
 Category.create!(name: 'CSS', image: 'https://www.shecodes.io/assets/logos/technologies/css-c4554008372faa24096997403ee46f3347a87b8f1636cfb148109bac867c03bb.png')
 Category.create!(name: 'JavaScript', image: 'https://www.shecodes.io/assets/logos/technologies/javascript-66f17d0db91bf422711333a5899e3ce6e952071c8c7b747021029a41fbf42cd7.png')
@@ -37,4 +37,3 @@ Category.create!(name: 'React', image: 'https://www.shecodes.io/assets/logos/tec
 Category.create!(name: 'Node.js', image: 'https://logospng.org/wp-content/uploads/node-js.png')
 Category.create!(name: 'JAVA', image: 'https://static.javatpoint.com/core/images/java-logo3.png')
 Category.create!(name: 'C', image: 'https://www.britefish.net/wp-content/uploads/2019/07/logo-c-1.png')
->>>>>>> a6730dcd742945bd2b11e0f120efb4c2ded7d060
