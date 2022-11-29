@@ -7,7 +7,9 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
-    @teacher = Teacher.find(params[:teachder_id])
+    # @teacher = Teacher.find(params[:teachder_id])
+    @teacher = Teacher.find(2)
+    
     @categories = @teacher.categories
   end
 

@@ -1,6 +1,6 @@
 <%= simple_form_for @appointment do |f| %>
 <%= f.input :description %>
-<%= f.input :categories %>
+<%# <%= f.input :category_id, collection: @categories %>
 <%= f.input :start_time %>
 <%= f.input :end_time %>
 <%= f.input :remote %>
