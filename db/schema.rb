@@ -52,8 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172106) do
     t.boolean "friday"
     t.boolean "saturday"
     t.boolean "sunday"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.time "start_time"
+    t.time "end_time"
     t.integer "price"
     t.boolean "remote"
     t.bigint "user_id", null: false
