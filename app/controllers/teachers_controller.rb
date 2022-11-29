@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: %i[new create]
+  before_action :set_teacher, only: %i[new create update]
   def new
     @teacher = Teacher.new
   end
@@ -7,6 +7,22 @@ class TeachersController < ApplicationController
   def create
     @teacher = Teacher.new(teacher_params)
     @teacher.user = current_user
+    if @teacher.save
+      redirect_to @teacher, notice: "Your teacher profile was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @teacher.update(teacher_params)
+      redirect_to @teacher, notice: "Your profile was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
