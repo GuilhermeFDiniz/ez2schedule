@@ -1,2 +1,16 @@
 <h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<%= @slots.each do |slot| %>
+<%#<%= link_to slot_path(slot) do %>
+<div>
+<%# <%= slot.user.perfil_video %>
+</div>
+<div>
+<h5><%= slot.user.first_name %></h5>
+<h5><%= slot.price %></h5>
+</div>
+<% end %>
+<%#<% end %>
+<%= week_calendar do |date| %>
+  <%= date %>
+<% end %>
