@@ -1,16 +1,11 @@
-<h1>Pages#home</h1>
+  <h1>Pages#home</h1>
 
-<%= @appointments.each do |appointment| %>
-<%#<%= link_to appointment_path(appointment) do %>
-<div>
-<%# <%= appointment.user.perfil_video %>
-</div>
-<div>
-<h5><%= appointment.user.first_name %></h5>
-<h5><%= appointment.price %></h5>
-</div>
-<% end %>
-<%#<% end %>
-<%= week_calendar do |date| %>
-  <%= date %>
+<%= week_calendar(events: @appointments, end_attribute: :end_time) do |date, appointments| %>
+  <% (@teacher.start_time.hour..@teacher.end_time.hour).each do |hour| %>
+    <div class="teacher-slot">
+      <%= hour %>
+      <%= @appointments.find_by(start_time: date.to_datetime.change({hour: hour}))&.description %>
+    </div>
+  <% end %>
+
 <% end %>

@@ -1,4 +1,9 @@
 class AppointmentsController < ApplicationController
+  before_action :set_appointment, only: %i[ destroy edit update show ]
+
+  def index
+    @appointments = Appointment.all
+  end
 
   def new
     @appointment = Appointment.new
@@ -15,6 +20,26 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def show
+    @appointment = Appointment.new
+  end
+
+  def edit
+  end
+
+  def update
+    if @appointment.update(appointment_params)
+      redirect_to @appointment, notice: "Appointment was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @appointment.destroy
+    redirect_to root_path, notice: "Appointment was successfully destroyed."
+  end
+
   private
 
   def set_appointment
@@ -22,6 +47,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:name, :address, :description, :price_per_night, :number_of_guests, :picture_url)
+    params.require(:appointment).permit(:start_time, :end_time, :category_id)
   end
 end
