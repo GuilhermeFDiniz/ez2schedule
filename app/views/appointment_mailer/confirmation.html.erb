@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1> <%= @greeting1 %> <%= @appointment.user.first_name %> <%= @appointment.user.last_name %>!</h1>
+    <h3>Here is all the information about your order:</h3>
+    <p>
+     <br> <strong>Seller:</strong> <%= @appointment.teacher.user.first_name %>
+     <br> <strong>Price:</strong> <%= @appointment.teacher.price %>
+     <br> <strong>Description:</strong>  <%= @appointment.description %>
+    </p>
+  </body>
+</html>

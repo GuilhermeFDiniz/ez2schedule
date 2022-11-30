@@ -9,4 +9,5 @@ class User < ApplicationRecord
     # true
     teacher.present?
   end
+
 end
