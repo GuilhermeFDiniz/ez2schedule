@@ -4,4 +4,4 @@ import "./controllers"
 import "bootstrap"
 
 
-console.log('estou aqui')
+
