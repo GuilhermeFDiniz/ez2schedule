@@ -7,7 +7,6 @@ class User < ApplicationRecord
 
 
   def teacher?
-    # true
     teacher.present?
   end
 
