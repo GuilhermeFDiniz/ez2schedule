@@ -1,8 +1,8 @@
   <h1>Pages#home</h1>
-<div class="teacher-calendar-show">
+<div class="teacher-calendar-show" data-controller="teacher-calendar">
   <%= week_calendar(events: @appointments, end_attribute: :end_time) do |date, appointments| %>
     <% (@teacher.start_time.hour..@teacher.end_time.hour).each do |hour| %>
-      <div class="teacher-slot">
+      <div class="teacher-slot" data-action="click->teacher-calendar#mark" data-teacher-calendar-target="mark">
       <% if @teacher[date.strftime("%A").downcase!.to_sym] %>
         <%= "#{hour}:00" %>
         <%= @appointments.find_by(start_time: date.to_datetime.change({hour: hour}))&.description %>
