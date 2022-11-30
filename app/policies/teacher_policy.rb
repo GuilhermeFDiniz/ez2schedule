@@ -7,7 +7,7 @@ class TeacherPolicy < ApplicationPolicy
   end
 
   def new?
-    teacher?
+    true
   end
 
   def create?

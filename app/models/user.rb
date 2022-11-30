@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :teacher
 
+
   def teacher?
     # true
     teacher.present?
