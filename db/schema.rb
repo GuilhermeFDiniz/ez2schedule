@@ -62,8 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_203508) do
     t.boolean "friday"
     t.boolean "saturday"
     t.boolean "sunday"
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer "price"
     t.boolean "remote"
     t.bigint "user_id", null: false
@@ -71,6 +71,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_203508) do
     t.datetime "updated_at", null: false
     t.boolean "in_person"
     t.index ["user_id"], name: "index_teachers_on_user_id"
+  end
+
+  create_table "user_categories", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_user_categories_on_category_id"
+    t.index ["user_id"], name: "index_user_categories_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,4 +105,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_203508) do
   add_foreign_key "teacher_categories", "categories"
   add_foreign_key "teacher_categories", "teachers"
   add_foreign_key "teachers", "users"
+  add_foreign_key "user_categories", "categories"
+  add_foreign_key "user_categories", "users"
 end

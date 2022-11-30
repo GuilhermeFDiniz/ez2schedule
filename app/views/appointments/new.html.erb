@@ -3,7 +3,8 @@
     <div class="col-6 m-auto">
       <div class="">
         <h1>Add a new Appointment</h1>
-        <div class="mt-3">
+        <div class="mt-3" data-controller="teacher-calendar">
+          <%= render "calendar", appointments: @appointments, teacher: @teacher  %>
           <%= render "shared/form_new_appointment", appointment: @appointment %>
         </div>
       </div>
