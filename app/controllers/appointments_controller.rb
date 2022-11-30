@@ -6,9 +6,11 @@ class AppointmentsController < ApplicationController
   end
 
   def new
+    @teacher = Teacher.find(params[:teacher_id])
+    start_date = Date.today
+    @appointments = @teacher.appointments.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
     @appointment = Appointment.new
     authorize @appointment
-    @teacher = Teacher.find(params[:teacher_id])
   end
 
   def create
@@ -21,7 +23,8 @@ class AppointmentsController < ApplicationController
       Category.where(id: params[:appointment][:categories]).each do |category|
         AppointmentCategory.create!(appointment: @appointment, category: category)
       end
-      redirect_to appointments_path
+      raise
+      redirect_to root_path
     else
      render :new, status: :unprocessable_entity
     end
