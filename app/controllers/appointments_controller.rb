@@ -9,13 +9,15 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new
     # @teacher = Teacher.find(params[:teachder_id])
     @teacher = Teacher.find(2)
-    
+
     @categories = @teacher.categories
   end
 
   def create
     @appointment = Appointment.new(appointment_params)
     if @appointment.save
+      mail = UserMailer.with(appointment: @appointment).create_confirmation
+      mail.deliver_now
       redirect_to appointments_path
     else
       render :new, status: :unprocessable_entity
@@ -52,3 +54,5 @@ class AppointmentsController < ApplicationController
     params.require(:appointment).permit(:start_time, :end_time, :category_id)
   end
 end
+
+
