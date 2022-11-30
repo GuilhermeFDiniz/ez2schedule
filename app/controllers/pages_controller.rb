@@ -6,4 +6,10 @@ class PagesController < ApplicationController
     start_date = Date.today
     @appointments = @teacher.appointments.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
   end
+
+
+  def index
+    @teachers = Teacher.all
+  end
+
 end

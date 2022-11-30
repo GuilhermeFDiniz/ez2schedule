@@ -1,14 +1,13 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: %i[create edit update]
+  before_action :set_teacher, only: %i[edit update]
 
   def index
     @teachers = policy_scope(Teacher)
   end
 
   def new
-    authorize @teacher
-
     @teacher = Teacher.new
+    authorize @teacher
   end
 
   def create
@@ -43,6 +42,6 @@ class TeachersController < ApplicationController
   end
 
   def teacher_params
-    params.require(:teacher).permit(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :price, :remote)
+    params.require(:teacher).permit(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :price, :remote, :in_person)
   end
 end

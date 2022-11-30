@@ -46,4 +46,3 @@ Category.create!(name: 'C', image: 'https://www.britefish.net/wp-content/uploads
 
 TeacherCategory.create(teacher:teacher, category: ruby)
 TeacherCategory.create(teacher:teacher, category: html)
-
