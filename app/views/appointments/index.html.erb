@@ -1,0 +1,15 @@
+<% @appointments.each do |appointment| %>
+  <%= appointment.teacher.user.first_name %>
+  <%= appointment.description %>
+  <% appointment.categories.each do |category|%>
+    <%= category.name%>
+  <%end%>
+  <%= appointment.start_time %>
+  <%= appointment.end_time %>
+  <%= appointment.remote %>
+  <%= appointment.teacher.price %>
+  <% if policy(appointment).edit? %>
+    <%= link_to "Edit this appointment", edit_appointment_path(appointment) %>
+  <% end %>
+  <%= button_to "Cancel this appointment", appointment, method: :delete if policy(appointment).destroy? %>
+<% end %>
