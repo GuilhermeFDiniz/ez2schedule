@@ -1,8 +1,14 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: %i[new create update]
+  before_action :set_teacher, only: %i[create edit update]
+
+  def index
+    @teachers = policy_scope(Teacher)
+  end
+
   def new
-    @teacher = Teacher.new
     authorize @teacher
+
+    @teacher = Teacher.new
   end
 
   def create
@@ -33,6 +39,7 @@ class TeachersController < ApplicationController
 
   def set_teacher
     @teacher = Teacher.find(params[:id])
+
   end
 
   def teacher_params

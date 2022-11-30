@@ -6,19 +6,25 @@ class TeacherPolicy < ApplicationPolicy
     # end
   end
 
-  def edit?
-    false
-  end
-
   def new?
-    false
-  end
-
-  def update?
-    false
+    teacher?
   end
 
   def create?
-    false
+    teacher?
+  end
+
+  def edit?
+    teacher?
+  end
+
+  def update?
+    teacher?
+  end
+
+  private
+
+  def teacher?
+    user.teacher?
   end
 end
