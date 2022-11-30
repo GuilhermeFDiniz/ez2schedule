@@ -2,11 +2,13 @@ class TeachersController < ApplicationController
   before_action :set_teacher, only: %i[new create update]
   def new
     @teacher = Teacher.new
+    authorize @teacher
   end
 
   def create
     @teacher = Teacher.new(teacher_params)
     @teacher.user = current_user
+    authorize @teacher
     if @teacher.save
       redirect_to @teacher, notice: "Your teacher profile was successfully created."
     else
@@ -15,9 +17,11 @@ class TeachersController < ApplicationController
   end
 
   def edit
+    authorize @teacher
   end
 
   def update
+    authorize @teacher
     if @teacher.update(teacher_params)
       redirect_to @teacher, notice: "Your profile was successfully updated."
     else
