@@ -13,3 +13,10 @@
     <% end %>
   <% end %>
 </div>
+
+  <div class="row">
+    <% @teachers.each do |teacher| %>
+      <%= teacher.user.first.name %>
+      <%= link_to "Make appointment with this teacher", new_appointment_path %>
+    <% end %>
+  </div>
