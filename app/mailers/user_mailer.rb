@@ -1,19 +1,23 @@
 class UserMailer < ApplicationMailer
+  default from: "Ez2Schedule"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
   #   en.user_mailer.welcome.subject
   #
-  def welcome
+  def order_email(user, appointment, teacher)
 
-    @user = params[:user]
-    mail(to: @user.email, subject: "Welcome to Ez2Schedule")
+    @user = user
+    @appointment = appointment
+    @teacher = teacher
+    mail(to: @user.email, subject: "Thanks for choosing Ez2Schedule")
 
 
-    @greeting = "Hi"
+    @greeting1 = "Hi, thanks for choosing Ez2Schedule,"
+    @greeting2 = "Hi, thanks for choosing Ez2Schedule."
 
     mail to: "to@example.org"
   end
-  
+
 end
