@@ -10,12 +10,12 @@ export default class extends Controller {
   mark(event) {
     console.log(this.markTargets)
     this.markTargets.forEach((cell)=> {
-      cell.classList.remove("bg-danger")
+      cell.classList.remove("calendar-mark")
     });
     if (event.currentTarget.innerText === "-"){
       return
     } else {
-      event.currentTarget.classList.add("bg-danger")
+      event.currentTarget.classList.add("calendar-mark")
       console.log(this.startTarget)
       console.log(this.endTarget)
       this.startTarget.value = event.currentTarget.innerText

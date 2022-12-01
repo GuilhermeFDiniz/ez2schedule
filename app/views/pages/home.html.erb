@@ -1,6 +1,11 @@
   <h1>Pages#home</h1>
 
 <% @teachers.each do |teacher| %>
-  <%= teacher.user.email %>
-  <%= link_to "Make appointment with this teacher", new_teacher_appointment_path(teacher) %>
+  <div class="d-grid">
+    <div>
+      <h3>Name: <%= teacher.user.first_name %></h3>
+      <h3>Price: <%= teacher.price %></h3>
+    </div>
+    <%= link_to "Make appointment with this teacher", new_teacher_appointment_path(teacher) %>
+  </div>
 <% end %>
