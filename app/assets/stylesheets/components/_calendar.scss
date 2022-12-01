@@ -1,10 +1,11 @@
 .simple-calendar {
-  table {
-    min-height: 80vh;
-  }
   .today {
     background-color: #FAF3DD;
   }
+}
+
+tr{
+  max-height: 600px;
 }
 
 .simple-calendar td {
