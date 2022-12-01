@@ -11,7 +11,7 @@
             <% @appointment.teacher.categories.pluck(:name).each do |category| %>
               <li class="list-group-item"><%=category%></li>
             <% end %>
-            <li class="list-group-item"><%= @appointment.teacher.price %></li>
+            <li class="list-group-item"><%= number_to_currency(@appointment.teacher.price, unit: "R$") %></li>
             <li class="list-group-item"><%#= rating average %></li>
             <li class="list-group-item"><%= @appointment.description %></li>
             <% @appointment.categories.each do |category|%>

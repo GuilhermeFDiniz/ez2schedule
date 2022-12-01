@@ -1,10 +1,15 @@
-<h1>Teachers</h1>
+<div class="banner mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+  <div class="container">
+    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
+    <p>Change your life and learn to code at one of our campuses around the world.</p>
+    <a class="btn btn-flat" href="#">Apply now</a>
+  </div>
+</div>
 <div class= 'container'>
   <div class="row">
-  <h2>Ruby<h2>
-  <% @teachers.each do |teacher| %>
+   <% @teachers.each do |teacher| %>
     <div class="col-md-4">
-      <div class="card mb-3" style="width: 18rem;">
+      <div class="card mb-4 card-home">
       <% if teacher.teacher_video.attached? %>
         <%= cl_video_tag teacher.teacher_video.key, class: 'card-img-top', controls: true %>
       <% elsif teacher.user.avatar_image.attached? %>
@@ -16,15 +21,16 @@
           <h5 class="card-title"><%= teacher.user.first_name %></h5>
           <p class="card-text"><%= teacher.user.about %></p>
           <ul class="list-group list-group-flush">
-          <% teacher.categories.pluck(:name).each do |category| %>
-            <li class="list-group-item"><%=category%></li>
-          <% end %>
-          <li class="list-group-item"><%= teacher.price %></li>
+         <li class="list-group-item"><% teacher.categories.pluck(:name).each do |category| %>
+            <%=category%>
+          <% end %></li>
+          <li class="list-group-item "><%= number_to_currency(teacher.price, unit: 'R$') %></li>
           <li class="list-group-item"><%#= rating average %></li>
           </ul>
-          <%= link_to "Make appointment with this teacher", new_teacher_appointment_path(teacher), class:'btn btn-primary' %>
+          <p class="text-center m-0"><%= link_to "Make appointment", new_teacher_appointment_path(teacher), class:'btn btn-main' %></p>
         </div>
       </div>
     </div>
+    <% end %>
   </div>
-<% end %>
+</div>

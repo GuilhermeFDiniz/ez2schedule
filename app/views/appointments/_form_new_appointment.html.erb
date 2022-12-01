@@ -6,6 +6,8 @@
 <%= f.input :end_time, as: :hidden, input_html: {data: {teacher_calendar_target: "end"}} %>
 <%= f.input :remote %>
 <%= number_to_currency(@teacher.price) %>
-<%= f.button :submit %>
+<div>
+  <%= f.button :submit, class: 'btn btn-main mt-3' %>
+</div>
 <% end %>
 </div>
