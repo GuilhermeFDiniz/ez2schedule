@@ -5,7 +5,13 @@
   <% @teachers.each do |teacher| %>
     <div class="col-md-4">
       <div class="card mb-3" style="width: 18rem;">
+      <% if teacher.teacher_video.attached? %>
+        <%= cl_video_tag teacher.teacher_video.key, class: 'card-img-top', controls: true %>
+      <% elsif teacher.user.avatar_image.attached? %>
+        <%= cl_image_tag teacher.user.avatar_image.key, :gravity=>"face", :height=>300, :width=>400, :crop=>"thumb", class: 'card-img-top h-100' %>
+      <% else %>
         <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%>
+      <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= teacher.user.first_name %></h5>
           <p class="card-text"><%= teacher.user.about %></p>
