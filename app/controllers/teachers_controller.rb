@@ -42,6 +42,6 @@ class TeachersController < ApplicationController
   end
 
   def teacher_params
-    params.require(:teacher).permit(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :price, :remote, :in_person)
+    params.require(:teacher).permit(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :price, :remote, :in_person, :teacher_video)
   end
 end
