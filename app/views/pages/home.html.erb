@@ -1,75 +1,30 @@
 <h1>Teachers</h1>
-<div class= 'container'>
-  <div class="row">
-  <h2>Ruby<h2>
-  <% @teachers_ruby.each do |teacher| %>
-    <div class="col-md-4">
-      <div class="card mb-3" style="width: 18rem;">
-        <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%>
-        <div class="card-body">
-          <h5 class="card-title"><%= teacher.user.first_name %></h5>
-          <p class="card-text"><%= teacher.user.about %></p>
-          <ul class="list-group list-group-flush">
-          <% teacher.categories.pluck(:name).each do |category| %>
-            <li class="list-group-item"><%=category%></li>
-          <% end %>
-          <li class="list-group-item"><%= teacher.price %></li>
-          <li class="list-group-item"><%#= rating average %></li>
-          </ul>
-          <%= link_to "Make appointment with this teacher", new_teacher_appointment_path(teacher), class:'btn btn-primary' %>
-        </div>
-      </div>
+<% if @teachers %>
+  <div class= 'container'>
+    <div class="row">
+    <h2>Pesquisa por: <%= params[:query] %></h1>
+      <%= render "teachers", teachers: @teachers %>
     </div>
-  <% end %>
   </div>
-</div>
+<% else %>
+  <div class= 'container'>
+    <div class="row">
+    <h2>Ruby<h2>
+      <%= render "teachers", teachers: @teachers_ruby %>
+    </div>
+  </div>
 
-<div class= 'container'>
-  <div class="row">
-  <h2>HTML<h2>
-  <% @teachers_html.each do |teacher| %>
-    <div class="col-md-4">
-      <div class="card mb-3" style="width: 18rem;">
-        <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%>
-        <div class="card-body">
-          <h5 class="card-title"><%= teacher.user.first_name %></h5>
-          <p class="card-text"><%= teacher.user.about %></p>
-          <ul class="list-group list-group-flush">
-          <% teacher.categories.pluck(:name).each do |category| %>
-            <li class="list-group-item"><%=category%></li>
-          <% end %>
-          <li class="list-group-item"><%= teacher.price %></li>
-          <li class="list-group-item"><%#= rating average %></li>
-          </ul>
-          <%= link_to "Make appointment with this teacher", new_teacher_appointment_path(teacher), class:'btn btn-primary' %>
-        </div>
-      </div>
+  <div class= 'container'>
+    <div class="row">
+    <h2>HTML<h2>
+      <%= render "teachers", teachers: @teachers_html %>
     </div>
-  <% end %>
   </div>
-</div>
 
-<div class= 'container'>
-  <div class="row">
-  <h2>CSS</h1>
-  <% @teachers_css.each do |teacher| %>
-    <div class="col-md-4">
-      <div class="card mb-3" style="width: 18rem;">
-        <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%>
-        <div class="card-body">
-          <h5 class="card-title"><%= teacher.user.first_name %></h5>
-          <p class="card-text"><%= teacher.user.about %></p>
-          <ul class="list-group list-group-flush">
-          <% teacher.categories.pluck(:name).each do |category| %>
-            <li class="list-group-item"><%=category%></li>
-          <% end %>
-          <li class="list-group-item"><%= teacher.price %></li>
-          <li class="list-group-item"><%#= rating average %></li>
-          </ul>
-          <%= link_to "Make appointment with this teacher", new_teacher_appointment_path(teacher), class:'btn btn-primary' %>
-        </div>
-      </div>
+  <div class= 'container'>
+    <div class="row">
+    <h2>CSS</h1>
+      <%= render "teachers", teachers: @teachers_css %>
     </div>
-  <% end %>
   </div>
-</div>
+<% end %>
