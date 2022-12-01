@@ -1,8 +1,16 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[destroy edit update show]
 
-  def index
-    @appointments = policy_scope(Appointment)
+  def student_appointments
+    @appointments_student = policy_scope(Appointment)
+    @appointments = []
+    @appointments_student.each { |appointment| @appointments << appointment if appointment.user == current_user }
+  end
+
+  def teacher_appointments
+    @appointments_teacher = policy_scope(Appointment)
+    @appointments = []
+    @appointments_teacher.each { |appointment| @appointments << appointment if appointment.teacher == current_user }
   end
 
   def show
@@ -27,7 +35,7 @@ class AppointmentsController < ApplicationController
       Category.where(id: params[:appointment][:categories]).each do |category|
         AppointmentCategory.create!(appointment: @appointment, category: category)
       end
-      redirect_to appointments_path
+      redirect_to appointment_path(@appointment)
     else
      render :new, status: :unprocessable_entity
     end
