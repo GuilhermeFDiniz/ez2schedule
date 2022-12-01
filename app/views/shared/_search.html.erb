@@ -1,0 +1,10 @@
+<%= form_with url: root_path, method: :get, class: "d-flex nav-search" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Buscar Professores ou Categorias"
+  %>
+  <%= button_tag(class: "nav-link nav-btn") do %>
+    <i class= "fa-solid fa-magnifying-glass"></i>
+  <% end %>
+<% end %>

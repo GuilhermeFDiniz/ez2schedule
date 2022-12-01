@@ -14,7 +14,16 @@ User.destroy_all
 user1 = User.create!(email: 'gui@teacher', password: '123123', first_name: 'Guilherme Teacher', last_name: 'Diniz')
 teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: false, sunday:false, start_time: '08:00'.to_time, end_time: '18:00'.to_time, price: '200')
 
-user2 = User.create!(email: 'gui@student', password: '123123', first_name: 'Guilherme Student', last_name: 'Ferreira')
+user2 = User.create!(email: 'rod@teacher', password: '123123', first_name: 'Rodrigo Teacher', last_name: 'Martins')
+teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: false, sunday:false, start_time: '08:00'.to_time, end_time: '18:00'.to_time, price: '175')
+
+user3 = User.create!(email: 'ju@teacher', password: '123123', first_name: 'Ju Teacher', last_name: 'Roman')
+teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: false, sunday:false, start_time: '08:00'.to_time, end_time: '18:00'.to_time, price: '130')
+
+user4 = User.create!(email: 'rodolfo@teacher', password: '123123', first_name: 'Rodolfo Teacher', last_name: 'Campos')
+teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: false, sunday:false, start_time: '08:00'.to_time, end_time: '18:00'.to_time, price: '100')
+
+user5 = User.create!(email: 'gui@student', password: '123123', first_name: 'Guilherme Student', last_name: 'Ferreira')
 
 today = DateTime.now
 day = today.day
