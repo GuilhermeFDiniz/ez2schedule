@@ -11,22 +11,26 @@ Teacher.destroy_all
 User.destroy_all
 
 
-user1 = User.create!(email: 'gui@teacher', password: '123123', first_name: 'Guilherme Teacher', last_name: 'Diniz')
-teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: false, sunday:false, start_time: '08:00'.to_time, end_time: '18:00'.to_time, price: '200')
+user1 = User.create!(email: 'guilherme@teacher', password: '123123', first_name: 'Guilherme Teacher', last_name: 'Diniz')
+teacher = Teacher.create!(user: user1, monday: true, tuesday:true, wednesday:true, thursday:true, friday:true, saturday: false, sunday:false, start_time: '08:00'.to_time, end_time: '18:00'.to_time, price: '200')
+user1 = User.create!(email: 'rodolfo@teacher', password: '123123', first_name: 'Rodolfo Teacher', last_name: 'Campos')
+teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: false, sunday:false, start_time: '06:00'.to_time, end_time: '18:00'.to_time, price: '500')
+user1 = User.create!(email: 'juliana@teacher', password: '123123', first_name: 'Juliana Teacher', last_name: 'Roman')
+teacher = Teacher.create!(user: user1, monday: false, tuesday:false, wednesday:true, thursday:true, friday:true, saturday: false, sunday:false, start_time: '14:00'.to_time, end_time: '20:00'.to_time, price: '250')
+user1 = User.create!(email: 'rodrigo@teacher', password: '123123', first_name: 'Rodrigo Teacher', last_name: 'Martins')
+teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: true, sunday:true, start_time: '08:00'.to_time, end_time: '22:00'.to_time, price: '300')
 
-user2 = User.create!(email: 'gui@student', password: '123123', first_name: 'Guilherme Student', last_name: 'Ferreira')
 
-today = DateTime.now
-day = today.day
-day2 = (today + 2.days).day
-month = today.month
-year = today.year
+user2 = User.create!(email: 'rod@teacher', password: '123123', first_name: 'Rodrigo Teacher', last_name: 'Martins')
+teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: false, sunday:false, start_time: '08:00'.to_time, end_time: '18:00'.to_time, price: '175')
 
-date1 = DateTime.new(year,month,day,13,0,0)
-date2 = DateTime.new(year,month,day2,8,0,0)
+user3 = User.create!(email: 'ju@teacher', password: '123123', first_name: 'Ju Teacher', last_name: 'Roman')
+teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: false, sunday:false, start_time: '08:00'.to_time, end_time: '18:00'.to_time, price: '130')
 
-Appointment.create(description: 'Ruby',  teacher: teacher, user: user2, start_time: date1 ,end_time: date1 + 1.hour)
-Appointment.create(description: 'React',  teacher: teacher, user: user2, start_time: date2 ,end_time: date2 + 1.hour)
+user4 = User.create!(email: 'rodolfo@teacher', password: '123123', first_name: 'Rodolfo Teacher', last_name: 'Campos')
+teacher = Teacher.create!(user: user1, monday: true, tuesday:false, wednesday:true, thursday:false, friday:true, saturday: false, sunday:false, start_time: '08:00'.to_time, end_time: '18:00'.to_time, price: '100')
+
+user5 = User.create!(email: 'gui@student', password: '123123', first_name: 'Guilherme Student', last_name: 'Ferreira')
 
 
 html = Category.create!(name: 'HTML', image: 'https://www.shecodes.io/assets/logos/technologies/html-0604a6b4c136a971d7ea5d7f5941216ae895093c636027fc3ac53297fea9a502.png')

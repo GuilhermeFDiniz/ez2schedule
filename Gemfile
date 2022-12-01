@@ -29,6 +29,9 @@ gem "jbuilder"
 
 gem 'pundit'
 
+# Search bar
+gem "pg_search"
+
 gem "simple_calendar", "~> 2.4"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
