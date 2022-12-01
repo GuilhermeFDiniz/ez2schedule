@@ -29,6 +29,8 @@ gem "jbuilder"
 
 gem 'pundit'
 
+gem "cloudinary"
+
 # Search bar
 gem "pg_search"
 
