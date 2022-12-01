@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <div class="col-8">
       <div class="form-login">
 
 
@@ -9,11 +9,14 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-inputs d-flex d-grid gap-5">
+  <div>
     <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :first_name, required: true, autofocus: true %>
     <%= f.input :last_name, required: true, autofocus: true %>
     <%= f.input :address, required: false, autofocus: true %>
+    </div>
+    <div>
     <%= f.input :about, required: false, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -31,6 +34,7 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+                </div>
   </div>
 
   <div class="form-actions">
@@ -38,15 +42,16 @@
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<div class="d-flex d-grid gap-5">
+  <h3>Cancel my account</h3>
 
-<div class="d-flex align-items-center">
-  <div>Unhappy?</div>
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link", class:"btn btn-secondary" %>
+  <div class="d-flex align-items-center">
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link", class:"btn btn-secondary" %>
+  </div>
+  <div>
+    <%= link_to "Back", :back, class:"btn btn-primary" %>
+  </div>
 </div>
-
-<%= link_to "Back", :back %>
-
       </div>
     </div>
   </div>
