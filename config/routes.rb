@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :teachers do
-    resources :appointments, only: [ :new, :create ]
+    resources :appointments, only: [ :index, :new, :create ]
   end
 
 end

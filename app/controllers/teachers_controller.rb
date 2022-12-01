@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: %i[edit update]
+  before_action :set_teacher, only: %i[index edit update]
 
   def index
     @teachers = policy_scope(Teacher)
@@ -15,7 +15,7 @@ class TeachersController < ApplicationController
     @teacher.user = current_user
     authorize @teacher
     if @teacher.save
-      redirect_to @teacher, notice: "Your teacher profile was successfully created."
+      redirect_to teacher_appointments_path(@teacher), notice: "Your teacher profile was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class TeachersController < ApplicationController
   def update
     authorize @teacher
     if @teacher.update(teacher_params)
-      redirect_to @teacher, notice: "Your profile was successfully updated."
+      redirect_to teacher_appointments_path, notice: "Your profile was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
