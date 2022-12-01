@@ -1,0 +1,19 @@
+<% teachers.each do |teacher| %>
+  <div class="col-md-4">
+    <div class="card mb-3" style="width: 18rem;">
+      <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%>
+      <div class="card-body">
+        <h5 class="card-title"><%= teacher.user.first_name %></h5>
+        <p class="card-text"><%= teacher.user.about %></p>
+        <ul class="list-group list-group-flush">
+        <% teacher.categories.pluck(:name).each do |category| %>
+          <li class="list-group-item"><%=category%></li>
+        <% end %>
+        <li class="list-group-item"><%= teacher.price %></li>
+        <li class="list-group-item"><%#= rating average %></li>
+        </ul>
+        <%= link_to "Make appointment with this teacher", new_teacher_appointment_path(teacher), class:'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>
