@@ -16,8 +16,8 @@ export default class extends Controller {
       return
     } else {
       event.currentTarget.classList.add("bg-danger")
-      console.log(this.startTarget.value)
-      console.log(this.endTarget.value)
+      console.log(this.startTarget)
+      console.log(this.endTarget)
       this.startTarget.value = event.currentTarget.innerText
       this.endTarget.value = `${(parseInt(event.currentTarget.innerText) + 1)}:00`
     }
