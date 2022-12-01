@@ -1,5 +1,5 @@
 class Appointment < ApplicationRecord
-  has_many :appointment_categories
+  has_many :appointment_categories, dependent: :destroy
   has_many :categories, through: :appointment_categories
   after_create :send_confirmation_email
   belongs_to :teacher

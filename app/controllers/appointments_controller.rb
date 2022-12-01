@@ -1,8 +1,12 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: %i[ destroy edit update show ]
+  before_action :set_appointment, only: %i[destroy edit update show]
 
   def index
     @appointments = policy_scope(Appointment)
+  end
+
+  def show
+    authorize @appointment
   end
 
   def new
@@ -29,11 +33,6 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def show
-    @appointment = Appointment.new
-    authorize @appointment
-  end
-
   def edit
     @teacher = @appointment.teacher
     start_date = Date.today
@@ -53,7 +52,7 @@ class AppointmentsController < ApplicationController
   def destroy
     authorize @appointment
     @appointment.destroy
-    redirect_to root_path, notice: "Appointment was successfully canceled."
+    redirect_to appointments_path, notice: "Appointment was successfully canceled."
   end
 
   private
