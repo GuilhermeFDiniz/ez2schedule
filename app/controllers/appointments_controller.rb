@@ -23,7 +23,7 @@ class AppointmentsController < ApplicationController
       Category.where(id: params[:appointment][:categories]).each do |category|
         AppointmentCategory.create!(appointment: @appointment, category: category)
       end
-      redirect_to root_path
+      redirect_to appointments_path
     else
      render :new, status: :unprocessable_entity
     end
