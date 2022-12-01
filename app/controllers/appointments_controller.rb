@@ -35,13 +35,16 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
+    @teacher = @appointment.teacher
+    start_date = Date.today
+    @appointments = @teacher.appointments.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
     authorize @appointment
   end
 
   def update
     authorize @appointment
     if @appointment.update(appointment_params)
-      redirect_to @appointment, notice: "Appointment was successfully updated."
+      redirect_to appointments_path, notice: "Appointment was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

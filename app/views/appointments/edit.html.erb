@@ -1,3 +1,13 @@
-<h1>Editing appointment</h1>
-
-<%# <%= render "form", appointment: @appointment%>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12 m-auto">
+      <div class="">
+        <h1>Edit Your Appointment with <%= @appointment.teacher.user.first_name %></h1>
+        <div class="mt-3 d-flex" data-controller="teacher-calendar">
+         <div class="p-3"> <%= render "calendar", appointments: @appointments, teacher: @teacher %></div>
+          <div class="p-3"><%= render "shared/form_edit_appointment", appointment: @appointment %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

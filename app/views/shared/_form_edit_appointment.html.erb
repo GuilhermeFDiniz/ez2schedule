@@ -1,0 +1,11 @@
+<div>
+<%= simple_form_for @appointment do |f| %>
+<%= f.input :description, class:"p-3 mb-2 bg-dark text-white" %>
+<%= f.input :categories, collection: @teacher.categories %>
+<%= f.input :start_time, as: :hidden, input_html: {data: {teacher_calendar_target: "start"}} %>
+<%= f.input :end_time, as: :hidden, input_html: {data: {teacher_calendar_target: "end"}} %>
+<%= f.input :remote %>
+<%= number_to_currency(@teacher.price) %>
+<%= f.button :submit %>
+<% end %>
+</div>
