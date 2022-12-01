@@ -2,20 +2,24 @@
 <div class="new-teacher-form">
 <h1>Create</h1>
   <div class="p-4 d-flex d-grid gap-4">
-    <%= f.input :monday, :as => :check_boxes %>
-    <%= f.input :tuesday, :as => :check_boxes %>
-    <%= f.input :wednesday, :as => :check_boxes %>
-    <%= f.input :thursday, :as => :check_boxes %>
-    <%= f.input :friday, :as => :check_boxes %>
-    <%= f.input :saturday, :as => :check_boxes %>
-    <%= f.input :sunday, :as => :check_boxes %>
+    <%= f.input :monday, as: :check_boxes %>
+    <%= f.input :tuesday, as: :check_boxes %>
+    <%= f.input :wednesday, as: :check_boxes %>
+    <%= f.input :thursday, as: :check_boxes %>
+    <%= f.input :friday, as: :check_boxes %>
+    <%= f.input :saturday, as: :check_boxes %>
+    <%= f.input :sunday, as: :check_boxes %>
   </div>
   <div class="p-4 d-flex d-grid gap-3">
-    <%= f.input :remote, :as => :check_boxes %>
-    <%= f.input :in_person, :as => :check_boxes %>
+    <%= f.input :remote, as: :check_boxes %>
+    <%= f.input :in_person, as: :check_boxes %>
     <%= f.input :price %>
-    </div>
-    <div class="p-4">
+  </div>
+
+  <div class="p-4 d-flex d-grid gap-3">
+    <%= f.input :teacher_video, as: :file %>
+  </div>
+  <div class="p-4">
     <%= f.button :submit, class: "btn btn-primary" %>
   </div>
 </div>
