@@ -2,7 +2,7 @@ class TeachersController < ApplicationController
   before_action :set_teacher, only: %i[index edit update]
 
   def index
-    @teachers = policy_scope(Teacher)
+    @teacher = policy_scope(Teacher)
   end
 
   def new
