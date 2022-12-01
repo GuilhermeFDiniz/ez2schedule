@@ -1,8 +1,8 @@
 <div class="teacher-calendar-show">
   <%= week_calendar(events: appointments, end_attribute: :end_time) do |date, appointment| %>
     <% (teacher.start_time.hour..teacher.end_time.hour).each do |hour| %>
-      <div class="teacher-slot" data-action="click->teacher-calendar#mark" data-teacher-calendar-target="mark">
-      <% if teacher[date.strftime("%A").downcase!.to_sym] && appointments.find_by(start_time: date.to_datetime.change(hour: hour)).nil? %>
+      <div class="teacher-slot" data-action="click->teacher-calendar#mark" data-teacher-calendar-date-param="<%= date %>" data-teacher-calendar-target="mark">
+      <% if teacher[date.strftime("%A").downcase!.to_sym] && appointments.find_by(start_time: Time.zone.parse("#{date} #{hour}:00")).nil? && (Time.zone.now < Time.zone.parse("#{date} #{hour}:00")) %>
         <%= "#{hour}:00" %>
       <% else %>
         <%= "-" %>
