@@ -1,36 +1,52 @@
-<div class='container'>
+<h2 class= 'p-5'>My Student Appointments<h2>
+<div class= 'container'>
   <div class="row">
-  <h2>My Appointments<h2>
- <% @appointments.each do |appointment| %>
-  <%= link_to appointment_path(appointment) do %>
+    <% @appointments.each do |appointment| %>
     <div class="col-md-4">
-      <div class="card mb-3" style="width: 18rem;">
-        <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%>
+      <div class="card">
+        <% if appointment.teacher.teacher_video.attached? %>
+          <%= cl_video_tag teacher.teacher_video.key, class: 'card-image-rounded ', controls: true %>
+        <% elsif appointment.teacher.user.avatar_image.attached? %>
+          <%= cl_image_tag teacher.user.avatar_image.key, :gravity=>"face", :height=>300, :width=>400, :crop=>"thumb", class: 'card-image-rounded  h-100' %>
+        <% else %>
+          <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-image-rounded'%>
+        <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= appointment.teacher.user.first_name %></h5>
-          <p class="card-text"><%= appointment.teacher.user.about %></p>
-            <ul class="list-group list-group-flush">
-            <% appointment.teacher.categories.pluck(:name).each do |category| %>
-              <li class="list-group-item"><%=category%></li>
-            <% end %>
-            <li class="list-group-item"><%= number_to_currency(appointment.teacher.price, unit: "R$") %></li>
-            <li class="list-group-item"><%#= rating average %></li>
-            <li class="list-group-item"><%= appointment.description %></li>
-            <% appointment.categories.each do |category|%>
-              <li class="list-group-item"><%= category.name%></li>
-            <%end%>
-            <li class="list-group-item"><%= appointment.start_time %></li>
-            <li class="list-group-item"><%= appointment.end_time %></li>
-            <li class="list-group-item"><%= appointment.remote %></li>
+          <p class="card-text card-font"><%=appointment.teacher.user.about%></p>
+          <ul class="list-group list-group-flush">
+            <div class="list-group-item d-flex justify-content-between">
+              <div>
+                <li class="card-font"><% appointment.teacher.categories.pluck(:name).each do |category| %>
+                    <%=category%>
+                  <% end %>
+              </div>
+              <div>
+              <%appointment.teacher.categories.pluck(:image).each do |cat_image|%>
+                <img src="<%=cat_image%>" alt="" style="width:20px;height:20px;">
+                <% end %>
+            </div>
+            </div>
+              </li>
+              <li class="list-group-item card-font "><%= number_to_currency(appointment.teacher.price, unit: 'R$') %></li>
+              <li class="list-group-item card-font"><%#= rating average %></li>
+              <li class="list-group-item card-font"><%= appointment.description %></li>
+            <div>
+              <% appointment.categories.each do |category|%>
+                <li class="list-group-item card-font"><%= category.name%></li>
+                <%end%>
+            </div>
+              <li class="list-group-item card-font" ><%= appointment.start_time.strftime('Data: %F | Hora: %T') %></li>
+              <li class="list-group-item card-font"><%= appointment.end_time.strftime('Data: %F | Hora: %T') %></li>
+              <li class="list-group-item card-font"><%= appointment.remote ? 'Remote' : 'In-Person' %></li>
             </ul>
-          <% if policy(appointment).edit? %>
-            <%= link_to "Edit this appointment", edit_appointment_path(appointment), class:'btn btn-primary' %>
-          <% end %>
-           <%= button_to "Cancel this appointment", appointment, method: :delete if policy(appointment).destroy? %>
+            <p class="text-center m-3"><% if policy(appointment).edit? %>
+              <%= link_to "Edit this appointment", edit_appointment_path(appointment), class:'btn btn-main' %>
+            <% end %>
+            <%= link_to "Cancel this appointment", appointment, method: :delete, class:'btn btn-main' if policy(appointment).destroy?   %></p>
         </div>
       </div>
     </div>
     <% end %>
-  <% end %>
   </div>
 </div>
