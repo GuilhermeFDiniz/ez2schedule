@@ -20,12 +20,22 @@
         <div class="card-body">
           <h5 class="card-title"><%= teacher.user.first_name %></h5>
           <ul class="list-group list-group-flush">
-         <li class="list-group-item"><% teacher.categories.pluck(:name).each do |category| %>
-            <%=category%>
-          <% end %></li>
-          <li class="list-group-item "><%= number_to_currency(teacher.price, unit: 'R$') %></li>
-          <li class="list-group-item"><%#= rating average %></li>
-          </ul>
+          <div class="list-group-item d-flex justify-content-between">
+            <div>
+              <li ><% teacher.categories.pluck(:name).each do |category| %>
+                  <%=category%>
+                <% end %>
+            </div>
+            <div>
+              <%teacher.categories.pluck(:image).each do |cat_image|%>
+                <img src="<%=cat_image%>" alt="" style="width:20px;height:20px;">
+                <% end %>
+            </div>
+            </div>
+              </li>
+              <li class="list-group-item "><%= number_to_currency(teacher.price, unit: 'R$') %></li>
+              <li class="list-group-item"><%#= rating average %></li>
+            </ul>
           <p class="text-center m-0"><%= link_to "Make appointment", new_teacher_appointment_path(teacher), class:'btn btn-main' %></p>
         </div>
       </div>
