@@ -5,7 +5,7 @@
       <% if teacher[date.strftime("%A").downcase!.to_sym] && appointments.find_by(start_time: Time.zone.parse("#{date} #{hour}:00")).nil? && (Time.zone.now < Time.zone.parse("#{date} #{hour}:00")) %>
         <%= "#{hour}:00" %>
       <% else %>
-        <%= "-" %>
+        <%= "" %>
       <% end %>
       </div>
     <% end %>

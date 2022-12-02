@@ -1,20 +1,23 @@
 
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class: "btn btn-outline-dark" %>
-    <% if calendar.number_of_weeks == 1 %>
-      <span class="calendar-title p-2 mb-2 bg-dark text-white"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %></span>
-    <% else %>
-      <span class="calendar-title p-2 mb-2 bg-dark text-white><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %> - <%= calendar.end_week %></span>
+    <%= link_to calendar.url_for_previous_view, class:"text-decoration-none arrow" do %>
+      <i class="fa-solid fa-circle-chevron-left"></i>
     <% end %>
-    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: "btn btn-outline-dark" %>
+      <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
+    <%= link_to calendar.url_for_next_view, class:"text-decoration-none arrow" do %>
+      <i class="fa-solid fa-circle-chevron-right"></i>
+    <% end %>
   </div>
 
   <table class="table table-striped">
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
-          <th class="p-3 mb-1 bg-black text-white"><%= t('date.abbr_day_names')[day.wday] %></th>
+          <th class="p-3 mb-1 bg-black text-white">
+          <div><%=  day.day %></div>
+          <div><%= t('date.abbr_day_names')[day.wday] %></div>
+          </th>
         <% end %>
       </tr>
     </thead>
