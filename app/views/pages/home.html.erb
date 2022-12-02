@@ -19,7 +19,6 @@
       <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= teacher.user.first_name %></h5>
-          <p class="card-text"><%= teacher.user.about %></p>
           <ul class="list-group list-group-flush">
          <li class="list-group-item"><% teacher.categories.pluck(:name).each do |category| %>
             <%=category%>

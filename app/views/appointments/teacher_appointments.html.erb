@@ -1,0 +1,36 @@
+<div class='container'>
+  <div class="row">
+  <h2>My Appointments<h2>
+ <% @appointments.each do |appointment| %>
+  <%= link_to appointment_path(appointment) do %>
+    <div class="col-md-4">
+      <div class="card mb-3" style="width: 18rem;">
+        <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%>
+        <div class="card-body">
+          <h5 class="card-title"><%= appointment.teacher.user.first_name %></h5>
+          <p class="card-text"><%= appointment.teacher.user.about %></p>
+            <ul class="list-group list-group-flush">
+            <% appointment.teacher.categories.pluck(:name).each do |category| %>
+              <li class="list-group-item"><%=category%></li>
+            <% end %>
+            <li class="list-group-item"><%= number_to_currency(appointment.teacher.price, unit: "R$") %></li>
+            <li class="list-group-item"><%#= rating average %></li>
+            <li class="list-group-item"><%= appointment.description %></li>
+            <% appointment.categories.each do |category|%>
+              <li class="list-group-item"><%= category.name%></li>
+            <%end%>
+            <li class="list-group-item"><%= appointment.start_time %></li>
+            <li class="list-group-item"><%= appointment.end_time %></li>
+            <li class="list-group-item"><%= appointment.remote %></li>
+            </ul>
+          <% if policy(appointment).edit? %>
+            <%= link_to "Edit this appointment", edit_appointment_path(appointment), class:'btn btn-primary' %>
+          <% end %>
+           <%= button_to "Cancel this appointment", appointment, method: :delete if policy(appointment).destroy? %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+</div>
