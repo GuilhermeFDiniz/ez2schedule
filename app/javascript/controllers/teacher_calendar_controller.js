@@ -4,13 +4,19 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["mark", "start", "end"]
   connect() {
+    console.log(this.markTargets)
+    this.markTargets.forEach((cell)=> {
+      if (cell.innerText === "") {
+      cell.classList.add("not-available-slot")
+    }
+    });
   }
 
   mark(event) {
     this.markTargets.forEach((cell)=> {
       cell.classList.remove("calendar-mark")
     });
-    if (event.currentTarget.innerText === "-"){
+    if (event.currentTarget.innerText === ""){
       return
     } else {
       event.currentTarget.classList.add("calendar-mark")

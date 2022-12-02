@@ -1,11 +1,10 @@
-<div class="container mt-4">
+<div class="container card-new-appointment">
   <div class="row">
     <div class="col-12 m-auto">
-      <div class="">
-        <h1>Make an Appointment with <%= @teacher.user.first_name %></h1>
+        <h1>Appointment with <%= @teacher.user.first_name %></h1>
         <div class="mt-3 d-flex" data-controller="teacher-calendar">
-         <div class="p-3"> <%= render "calendar", appointments: @appointments, teacher: @teacher %></div>
-          <div class="p-3"><%= render "form_new_appointment", appointment: @appointment %></div>
+         <div class="p-3 card-new-appointment-calendar"> <%= render "calendar", appointments: @appointments, teacher: @teacher %></div>
+          <div class="p-3 card-new-appointment-form"><%= render "form_new_appointment", appointment: @appointment %></div>
         </div>
       </div>
     </div>

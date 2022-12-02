@@ -1,0 +1,43 @@
+.card-new-appointment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+  // margin-top: 100px;
+  background-color: white ;
+  width: 900px;
+margin-top: 10px;
+height: 100%;
+  .card-new-appointment-calendar {
+    height: 50px;
+  }
+
+  .card-new-appointment-form {
+    height: 400px;
+  }
+
+  .form-new-appointment-price {
+    font-size: large;
+    font-weight: bold;
+  }
+
+}
+
+.calendar-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-title {
+  font-size: 30px;
+}
+
+.arrow {
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 25px;
+  &:hover{
+    color: rgb(0, 0, 0);
+  }
+}

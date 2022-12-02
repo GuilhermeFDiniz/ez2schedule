@@ -13,3 +13,9 @@
 @import "components/footer";
 @import "simple_calendar";
 @import "components/calendar";
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

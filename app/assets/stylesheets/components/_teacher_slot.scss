@@ -3,4 +3,15 @@
   border-bottom: 1px solid rgb(223, 223, 223);
   padding: 2px;
   background-color: white;
+  height: 29px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.not-available-slot {
+  background-color: rgba(0, 0, 0, 0.025);
+  &:hover{
+    cursor: auto;
+  }
 }
