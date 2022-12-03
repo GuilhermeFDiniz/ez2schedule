@@ -13,10 +13,13 @@
       <ul class="navbar-nav me-auto">
           <% if user_signed_in? %>
             <li class="nav-item active pe-2">
+              <%= "Hello #{current_user.first_name}" %>
+            </li>
+            <li class="nav-item active pe-2">
               <%= link_to "Home", root_path, class: "nav-link" %>
             </li>
             <li class="nav-item pe-2">
-              <%= link_to "Messages", "#", class: "nav-link" %>
+              <%= link_to "Messages", chatrooms_path, class: "nav-link" %>
             </li>
             <li class="nav-item dropdown">
               <% if current_user.avatar_image.attached?%>

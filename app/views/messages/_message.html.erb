@@ -1,0 +1,12 @@
+<div id="message-<%= message.id %>">
+  <% if current_user.avatar_image.attached?%>
+    <%= cl_image_tag current_user.avatar_image.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, :gravity=>"face", :height=>45, :width=>45, :crop=>"thumb" %>
+  <% else %>
+    <%= image_tag "https://www.computerhope.com/jargon/g/guest-user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+  <% end %>
+  <small>
+    <strong><%= message.user.first_name %></strong>
+    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+  </small>
+  <p><%= message.content %></p>
+</div>

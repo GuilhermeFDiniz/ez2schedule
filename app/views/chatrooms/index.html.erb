@@ -1,0 +1,27 @@
+Your Chatrooms
+<div class="d-flex flex-column justify-content-between">
+  <% @chatrooms.each do |chatroom| %>
+    <%= link_to chatroom do %>
+      <% if chatroom.user == current_user %>
+        <div class="p-2 border border-dark rounded w-25">
+        <% if chatroom.teacher.user.avatar_image.attached?%>
+          <%= cl_image_tag chatroom.teacher.user.avatar_image.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, :gravity=>"face", :height=>45, :width=>45, :crop=>"thumb" %>
+        <% else %>
+          <%= image_tag "https://www.computerhope.com/jargon/g/guest-user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+        <%= chatroom.teacher.user.first_name %>
+        </div>
+      <% end %>
+      <% if chatroom.teacher.user == current_user %>
+        <div class="p-2 border border-dark rounded w-25">
+          <% if chatroom.user.avatar_image.attached?%>
+            <%= cl_image_tag chatroom.user.avatar_image.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, :gravity=>"face", :height=>45, :width=>45, :crop=>"thumb" %>
+          <% else %>
+            <%= image_tag "https://www.computerhope.com/jargon/g/guest-user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
+          <%= chatroom.user.first_name  %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
