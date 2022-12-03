@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_02_141702) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_03_195337) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_02_141702) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "teacher_id", null: false
+    t.bigint "appointment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_chatrooms_on_appointment_id"
+    t.index ["teacher_id"], name: "index_chatrooms_on_teacher_id"
+    t.index ["user_id"], name: "index_chatrooms_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "teacher_categories", force: :cascade do |t|
     t.bigint "teacher_id", null: false
     t.bigint "category_id", null: false
@@ -124,6 +145,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_02_141702) do
   add_foreign_key "appointment_categories", "categories"
   add_foreign_key "appointments", "teachers"
   add_foreign_key "appointments", "users"
+  add_foreign_key "chatrooms", "appointments"
+  add_foreign_key "chatrooms", "teachers"
+  add_foreign_key "chatrooms", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "teacher_categories", "categories"
   add_foreign_key "teacher_categories", "teachers"
   add_foreign_key "teachers", "users"

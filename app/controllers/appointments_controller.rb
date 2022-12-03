@@ -30,6 +30,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     @appointment.user = current_user
     @appointment.teacher = @teacher
+    Chatroom.create!(user: current_user, teacher: @teacher, appointment: @appointment)
     authorize @appointment
     if @appointment.save
       Category.where(id: params[:appointment][:categories]).each do |category|
