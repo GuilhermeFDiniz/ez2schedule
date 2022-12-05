@@ -16,6 +16,7 @@ Teacher.destroy_all
 puts "Estou destruindo seus TeachersCategories😊"
 User.destroy_all
 puts "Estou destruindo seus Usuarios😢"
+Category.destroy_all
 
 #Variables with range to populate Teachers Attributes
 @seed_boolean = [true, false]
