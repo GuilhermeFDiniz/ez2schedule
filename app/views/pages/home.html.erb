@@ -4,16 +4,16 @@
     <p>Change your life and learn to code with our teachers around the world.</p>
     </div>
 </div>
- <%= render "shared/catbar" %>
+<%= render "shared/catbar" %>
 <div class= 'container'>
-  <div class="row">
+  <div class="row cards-grid">
    <% @teachers.each do |teacher| %>
     <div class="col-md-4">
       <div class="card mb-4 card-home">
         <% if teacher.teacher_video.attached? %>
-          <%= cl_video_tag teacher.teacher_video.key, class: 'card-image-rounded ', controls: true %>
+          <%= cl_video_tag teacher.teacher_video.key, class: 'teacher-video card-image-rounded ', controls: true, width: 400, height: 250, crop: "fill" %>
         <% elsif teacher.user.avatar_image.attached? %>
-          <%= cl_image_tag teacher.user.avatar_image.key, :gravity=>"face", :height=>300, :width=>400, :crop=>"thumb", class: 'card-image-rounded  h-100' %>
+          <%= cl_image_tag teacher.user.avatar_image.key, gravity: "face", height: 300, width: 400, crop: "thumb", class: 'card-image-rounded  h-100' %>
         <% else %>
           <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-image-rounded'%>
         <% end %>
@@ -27,10 +27,10 @@
                   <% end %>
               </div>
               <div>
-              <%teacher.categories.pluck(:image).each do |cat_image|%>
-                <img src="<%=cat_image%>" alt="" style="width:20px;height:20px;">
-                <% end %>
-            </div>
+                <%teacher.categories.pluck(:image).each do |cat_image|%>
+                  <img src="<%=cat_image%>" alt="" style="width:20px;height:20px;">
+                  <% end %>
+              </div>
             </div>
               </li>
               <li class="list-group-item "><%= number_to_currency(teacher.price, unit: 'R$') %></li>
