@@ -8,7 +8,8 @@ class CreateAppointments < ActiveRecord::Migration[7.0]
       t.datetime :end_time
       t.references :teacher, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
-
+      t.monetize :amount, currency: { present: false }
+      t.string :checkout_session_id
       t.timestamps
     end
   end

@@ -9,7 +9,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= appointment.user.first_name %></h5>
             <ul class="list-group list-group-flush">
-            <li class="list-group-item"><%= number_to_currency(appointment.teacher.price, unit: "R$") %></li>
+            <li class="list-group-item"><%= humanized_money_with_symbol(appointment.teacher.price) %></li>
             <li class="list-group-item"><%#= rating average %></li>
             <li class="list-group-item"><%= appointment.description %></li>
             <% appointment.categories.each do |category|%>

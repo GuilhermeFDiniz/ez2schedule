@@ -27,7 +27,7 @@ class AppointmentsController < ApplicationController
 
   def create
     @teacher = Teacher.find(params[:teacher_id])
-    @appointment = Appointment.new(appointment_params)
+    @appointment = Appointment.new(appointment_params, state: 'pending')
     @appointment.user = current_user
     @appointment.teacher = @teacher
     Chatroom.create!(user: current_user, teacher: @teacher, appointment: @appointment)
@@ -36,7 +36,20 @@ class AppointmentsController < ApplicationController
       Category.where(id: params[:appointment][:categories]).each do |category|
         AppointmentCategory.create!(appointment: @appointment, category: category)
       end
-      redirect_to appointment_path(@appointment)
+      session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card', 'pix'],
+        line_items: [{
+          name: @appointment.teacher.user.first_name,
+          images: [@appointment.teacher.user.avatar_image],
+          amount: @appointment.price_cents,
+          currency: 'brl',
+          quantity: 1
+        }],
+        success_url: order_url(@appointment),
+        cancel_url: order_url(@appointment)
+      )
+      @appointment.update(checkout_session_id: session.id)
+      redirect_to new_appointment_payment_path(order)
     else
      render :new, status: :unprocessable_entity
     end

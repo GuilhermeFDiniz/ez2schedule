@@ -8,9 +8,12 @@
 <%= f.input :remote %>
 <%= f.input :in_person %>
 </div>
-<p class="form-new-appointment-price"> Preço: <%= number_to_currency(@teacher.price) %></p>
+<p class="form-new-appointment-price"> Preço: <%= humanized_money_with_symbol(appointment.teacher.price) %></p>
 <div>
-  <%= f.button :submit, class: 'btn btn-main w-100 mt-3' %>
+  <%= form_with url: appointments_path do %>
+  <%= hidden_field_tag 'appointment_id', @appointment.id %>
+  <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
+<% end %>
 </div>
 <% end %>
 </div>

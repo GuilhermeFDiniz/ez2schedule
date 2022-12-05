@@ -5,7 +5,7 @@
 <%= f.input :start_time, as: :hidden, input_html: {data: {teacher_calendar_target: "start"}} %>
 <%= f.input :end_time, as: :hidden, input_html: {data: {teacher_calendar_target: "end"}} %>
 <%= f.input :remote %>
-<%= number_to_currency(@teacher.price) %>
+<%= humanized_money_with_symbol(appointment.teacher.price) %>
 <%= f.button :submit %>
 <% end %>
 </div>

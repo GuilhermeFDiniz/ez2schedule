@@ -18,4 +18,7 @@ Rails.application.routes.draw do
     resources :appointments, only: [ :index, :new, :create ]
   end
 
+  resources :orders, only: [:show, :create] do
+    resources :payments, only: :new
+  end
 end

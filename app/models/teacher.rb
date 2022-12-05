@@ -4,6 +4,8 @@ class Teacher < ApplicationRecord
   has_many :teacher_categories
   has_many :categories, through: :teacher_categories
   has_one_attached :teacher_video
+  monetize :price_cents
+
 
   validates :user, uniqueness: true
 
