@@ -33,7 +33,7 @@
             </div>
             </div>
               </li>
-              <li class="list-group-item "><%= number_to_currency(teacher.price, unit: 'R$') %></li>
+              <li class="list-group-item "><%= humanized_money_with_symbol(teacher.price_cents) %></li>
               <li class="list-group-item"><%#= rating average %></li>
             </ul>
           <p class="text-center m-0"><%= link_to "Make appointment", new_teacher_appointment_path(teacher), class:'btn btn-main' %></p>

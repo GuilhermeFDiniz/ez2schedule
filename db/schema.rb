@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_03_195337) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_04_235939) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,8 +59,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_03_195337) do
     t.datetime "end_time"
     t.bigint "teacher_id", null: false
     t.bigint "user_id", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "checkout_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "state"
     t.boolean "remote"
     t.boolean "in_person"
     t.index ["teacher_id"], name: "index_appointments_on_teacher_id"
@@ -114,12 +117,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_03_195337) do
     t.boolean "sunday"
     t.time "start_time"
     t.time "end_time"
-    t.integer "price"
     t.boolean "remote"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "in_person"
+    t.integer "price_cents", default: 0, null: false
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 

@@ -41,6 +41,8 @@ gem 'faker'
 gem 'money-rails'
 
 gem 'stripe'
+
+gem 'stripe_event'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

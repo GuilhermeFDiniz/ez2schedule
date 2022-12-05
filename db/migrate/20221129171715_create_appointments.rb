@@ -11,6 +11,7 @@ class CreateAppointments < ActiveRecord::Migration[7.0]
       t.monetize :amount, currency: { present: false }
       t.string :checkout_session_id
       t.timestamps
+      t.string :state
     end
   end
 end
