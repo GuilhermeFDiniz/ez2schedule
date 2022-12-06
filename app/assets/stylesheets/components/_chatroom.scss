@@ -1,5 +1,5 @@
 .chatroom {
-  background: white;
+  background: #FFF;
   margin-top: 9px;
   height: calc(80vh - 75px);
   display: flex;
@@ -11,11 +11,12 @@
     border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
     padding: 1rem;
+    font-weight: bolder;
   }
 
   .messages {
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
     padding: 1rem;
   }
 
@@ -29,3 +30,19 @@
   }
 }
 
+.form-control {
+  background-color: #FFF;
+}
+
+.chatroom-container{
+  margin: 20px;
+}
+
+.chat-list-names {
+  background-color: #FFF;
+  a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: 400;
+  }
+}
