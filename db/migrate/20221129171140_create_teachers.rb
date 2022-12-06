@@ -10,7 +10,6 @@ class CreateTeachers < ActiveRecord::Migration[7.0]
       t.boolean :sunday
       t.time :start_time
       t.time :end_time
-      t.integer :price
       t.boolean :remote
       t.references :user, null: false, foreign_key: true
 

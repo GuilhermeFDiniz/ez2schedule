@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
   resources :appointments, only: [:edit, :update, :show, :destroy] do
-  get 'student_appointments', on: :member
-  get 'teacher_appointments', on: :member
+    get 'student_appointments', on: :member
+    get 'teacher_appointments', on: :member
+    resources :payments, only: :new
   end
 
   resources :chatrooms, only: [:index, :show] do
@@ -15,7 +16,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :teachers do
-    resources :appointments, only: [ :index, :new, :create ]
+    resources :appointments, only: [:index, :new, :create]
   end
 
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
+  
 end

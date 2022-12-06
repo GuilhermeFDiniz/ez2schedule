@@ -4,6 +4,7 @@ class Appointment < ApplicationRecord
   after_create :send_confirmation_email
   belongs_to :teacher
   belongs_to :user
+  monetize :amount_cents
 
   private
 
