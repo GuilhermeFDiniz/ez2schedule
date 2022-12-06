@@ -59,11 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_235939) do
     t.datetime "end_time"
     t.bigint "teacher_id", null: false
     t.bigint "user_id", null: false
-    t.integer "amount_cents", default: 0, null: false
-    t.string "checkout_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "state"
     t.boolean "remote"
     t.boolean "in_person"
     t.index ["teacher_id"], name: "index_appointments_on_teacher_id"
@@ -117,6 +114,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_235939) do
     t.boolean "sunday"
     t.time "start_time"
     t.time "end_time"
+    t.integer "price"
     t.boolean "remote"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
