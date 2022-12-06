@@ -8,38 +8,42 @@
 <div class= 'container'>
   <div class="row cards-grid">
    <% @teachers.each do |teacher| %>
-    <div class="col-md-4">
+    <div class="col-3">
       <div class="card mb-4 card-home">
         <% if teacher.teacher_video.attached? %>
-          <%= cl_video_tag teacher.teacher_video.key, class: 'teacher-video card-image-rounded ', controls: true, width: 400, height: 250, crop: "fill" %>
+          <%= cl_video_tag teacher.teacher_video.key, class: 'teacher-video card-image-rounded ', controls: true, width: 300, height: 200, crop: "fill" %>
         <% elsif teacher.user.avatar_image.attached? %>
           <%= cl_image_tag teacher.user.avatar_image.key, gravity: "face", height: 300, width: 400, crop: "thumb", class: 'card-image-rounded  h-100' %>
         <% else %>
           <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-image-rounded'%>
         <% end %>
         <div class="card-body">
-          <h5 class="card-title"><%= teacher.user.first_name %> <%=teacher.user.last_name  %></h5>
-          <ul class="list-group list-group-flush">
-            <div class="list-group-item d-flex justify-content-between">
+          <h5 class="card-title"><b><%= teacher.user.first_name %> <%=teacher.user.last_name %></b></h5>
+          <hr>
+          <p class="list-group-item"><%= number_to_currency(teacher.price_cents / 100.0, unit: "R$ ", separator: ",", delimiter: ".") %></p>
+          <hr>
+          <div class="list-group list-group-flush">
+            <div class="d-flex justify-content-between">
               <div>
-                <li ><% teacher.categories.pluck(:name).each do |category| %>
-                    <%=category%>
-                  <% end %>
+              <% teacher.categories.each do |category| %>
+                <span class="badge rounded-pill text-bg-light">
+                  <img src="<%=category.image%>" style="width:20px;height:20px;">
+                  <%=category.name%>
+                </span>
+              <% end %>
               </div>
-              <div>
-                <%teacher.categories.pluck(:image).each do |cat_image|%>
-                  <img src="<%=cat_image%>" alt="" style="width:20px;height:20px;">
-                  <% end %>
-              </div>
+                <div>
+                    <%teacher.categories.pluck(:image).each do |cat_image|%>
+                    <% end %>
+                </div>
             </div>
-              </li>
-              <li class="list-group-item "><%= humanized_money_with_symbol(teacher.price_cents) %></li>
               <li class="list-group-item"><%#= rating average %></li>
-            </ul>
-          <p class="text-center m-0"><%= link_to "Make appointment", new_teacher_appointment_path(teacher), class:'btn btn-main' %></p>
+          </div>
         </div>
+         <p class="text-center m-2"><%= link_to "Make appointment", new_teacher_appointment_path(teacher), class:'btn btn-secondary rounded-pill' %></p>
       </div>
     </div>
     <% end %>
+    </div>
   </div>
 </div>

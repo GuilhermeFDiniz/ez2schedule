@@ -11,4 +11,5 @@ class Appointment < ApplicationRecord
   def send_confirmation_email
     AppointmentMailer.with(appointment: self).confirmation.deliver_now
   end
+
 end

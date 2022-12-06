@@ -1,26 +1,32 @@
 <%= simple_form_for teacher do |f| %>
-<div class="new-teacher-form">
-<h1>Create</h1>
-  <div class="p-4 d-flex d-grid gap-4">
-    <%= f.input :monday, as: :check_boxes %>
-    <%= f.input :tuesday, as: :check_boxes %>
-    <%= f.input :wednesday, as: :check_boxes %>
-    <%= f.input :thursday, as: :check_boxes %>
-    <%= f.input :friday, as: :check_boxes %>
-    <%= f.input :saturday, as: :check_boxes %>
-    <%= f.input :sunday, as: :check_boxes %>
-  </div>
-  <div class="p-4 d-flex d-grid gap-3">
-    <%= f.input :remote, as: :check_boxes %>
-    <%= f.input :in_person, as: :check_boxes %>
-    <%= f.input :price %>
-  </div>
+  <h1 class= 'mt-5 text-center'>Register as a Teacher</h1>
+  <div class="new-teacher-form">
+    <div class='row'>
+      <div class='col-4'>
+        <label class= mb-3>Availibility</label>
+        <%= f.input :monday, as: :boolean %>
+        <%= f.input :tuesday, as: :boolean %>
+        <%= f.input :wednesday, as: :boolean %>
+        <%= f.input :thursday, as: :boolean %>
+        <%= f.input :friday, as: :boolean %>
+        <%= f.input :saturday, as: :boolean %>
+        <%= f.input :sunday, as: :boolean %>
+        <%= f.input :start_time, discard_minute: true %>
+        <%= f.input :end_time, discard_minute: true %>
+      </div>
+      <div class="col-4">
+        <label class= mb-3>Location</label>
+        <%= f.input :remote, as: :boolean %>
+        <%= f.input :in_person, as: :boolean %>
+        <%= f.input :price, :label => 'R$' %>
+        <%= f.input :categories, collection: Category.all, input_html: { multiple: true, data:{controller: 'tom-select'} } %>
+      </div>
 
-  <div class="p-4 d-flex d-grid gap-3">
-    <%= f.input :teacher_video, as: :file %>
+      <div class="col-4">
+        <%= f.input :teacher_video, as: :file %>
+        <%= f.button :submit, class: "btn btn-dark martin-top" %>
+        <%= f.error :user, class:'text-danger'%>
+      </div>
+    </div>
   </div>
-  <div class="p-4">
-    <%= f.button :submit, class: "btn btn-dark" %>
-  </div>
-</div>
-  <% end %>
+<% end %>
