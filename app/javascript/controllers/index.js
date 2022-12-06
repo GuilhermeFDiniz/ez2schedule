@@ -12,3 +12,6 @@ application.register("hello", HelloController)
 
 import TeacherCalendarController from "./teacher_calendar_controller"
 application.register("teacher-calendar", TeacherCalendarController)
+
+import TomSelectController from "./tom_select_controller"
+application.register("tom-select", TomSelectController)
