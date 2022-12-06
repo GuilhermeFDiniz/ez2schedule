@@ -1,11 +1,13 @@
 <div class="container card-new-appointment">
   <div class="row">
+   <div class="p-3 mb-2 text-dark">
     <div class="col-12 m-auto">
-        <h1>Appointment with <%= @teacher.user.first_name %></h1>
-        <div class="mt-3 d-flex" data-controller="teacher-calendar">
-         <div class="p-3 card-new-appointment-calendar"> <%= render "calendar", appointments: @appointments, teacher: @teacher %></div>
-          <div class="p-3 card-new-appointment-form"><%= render "form_new_appointment", appointment: @appointment %></div>
-        </div>
+        <h1><b><div class="text-center">Appointment with <%= @teacher.user.first_name %></div></b></h1>
+            <div class="mt-3 d-flex" data-controller="teacher-calendar">
+          <div class="p-3 card-new-appointment-calendar"> <%= render "calendar", appointments: @appointments, teacher: @teacher %></div>
+            <div class="p-3 card-new-appointment-form"><%= render "form_new_appointment", appointment: @appointment %></div>
+          </div>
+       </div>
       </div>
     </div>
   </div>
