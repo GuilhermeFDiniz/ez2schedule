@@ -15,6 +15,9 @@ class TeachersController < ApplicationController
     @teacher.user = current_user
     authorize @teacher
     if @teacher.save
+      Category.where(id: params[:teacher][:categories]).each do |category|
+        TeacherCategory.create!(teacher: @teacher, category: category)
+      end
       redirect_to teacher_appointments_path(@teacher), notice: "Your teacher profile was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -42,6 +45,16 @@ class TeachersController < ApplicationController
   end
 
   def teacher_params
-    params.require(:teacher).permit(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :price, :remote, :in_person, :teacher_video)
+    params.require(:teacher).permit(:monday,
+                                    :tuesday,
+                                    :wednesday,
+                                    :thursday,
+                                    :friday,
+                                    :saturday,
+                                    :sunday,
+                                    :price,
+                                    :remote,
+                                    :in_person,
+                                    :teacher_video)
   end
 end
