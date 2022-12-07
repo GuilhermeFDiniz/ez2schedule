@@ -10,7 +10,7 @@ class CreateTeachers < ActiveRecord::Migration[7.0]
       t.boolean :sunday
       t.time :start_time
       t.time :end_time
-      t.boolean :remote
+      t.boolean :remote, default: false
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
