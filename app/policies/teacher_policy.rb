@@ -6,16 +6,8 @@ class TeacherPolicy < ApplicationPolicy
     end
   end
 
-  def new?
-    true
-  end
-
   def create?
-    teacher?
-  end
-
-  def edit?
-    teacher?
+    !teacher?
   end
 
   def update?

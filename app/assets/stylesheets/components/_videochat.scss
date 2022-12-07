@@ -1,9 +1,9 @@
 #videos {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
+  grid-template-columns: 1fr 1fr ;
   gap: 1rem;
 }
 
 .OT_root {
-  height: 240px !important;
+  height: 550px !important;
 }
