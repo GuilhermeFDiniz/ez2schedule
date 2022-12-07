@@ -33,9 +33,11 @@ class AppointmentsController < ApplicationController
     @appointment.teacher = @teacher
     authorize @appointment
     if @appointment.save
-      Chatroom.create!(user: current_user, teacher: @teacher, appointment: @appointment)
       Category.where(id: params[:appointment][:categories]).each do |category|
         AppointmentCategory.create!(appointment: @appointment, category: category)
+      end
+      if Chatroom.where(user: @appointment.user).where(teacher: @appointment.teacher).empty? && Chatroom.where(user: @appointment.teacher).where(teacher: @appointment.user).empty?
+        Chatroom.create!(user: current_user, teacher: @teacher, appointment: @appointment)
       end
       session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
