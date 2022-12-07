@@ -1,0 +1,14 @@
+<div class='confirmation-container'>
+  <div class='my-2'>
+    <h1><strong>Congratulations for your purshase, <%= current_user.first_name %>!</strong></h1>
+  </div>
+  <div class='my-2'>
+    <h2>Your payment has been confirmed.</h2>
+  </div>
+  <div class='my-2'>
+    <p> You'll receive an e-mail confirmig your appointment with <%= appointment.teacher.user.first_name%>.</p>
+  </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <h2 class="fw-bold"><%= image_tag 'ez2schedule_logo2.png', class: 'rounded-circle'%></h2>
+  </div>
+</div>
