@@ -1,19 +1,21 @@
-<div class="banner mb-0" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.1)), url(https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80);">
+<div class="banner mb-0 w-400 h-400 " style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(https://img.freepik.com/free-photo/professional-programmer-working-late-dark-office_1098-18705.jpg?w=900&t=st=1670417086~exp=1670417686~hmac=2da7c1722301eda7bce62c3c7049b76314030ab344e2d86707465264a7b5b3ae);">
   <div class="container">
-    <h1>Ez2Schedule brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
-    <p>Change your life and learn to code with our teachers around the world.</p>
+    <h1 class= "text-center m-2">Ez2Schedule brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
+    <strong><p class= "text-center">Change your life and learn to code with our teachers around the world.</p></strong>
     </div>
 </div>
-<%= render "shared/catbar" %>
+<div class="m-4 mt-4 w-10 h-10" class="catbar-rounded" >
+    <%= render "shared/catbar" %>
+</div>
 <div class= 'container'>
-  <div class="row cards-grid">
+  <div class="row cards-grid" id='cards'>
    <% @teachers.each do |teacher| %>
     <div class="col-3">
-      <div class="card mb-4 card-home">
+      <div class="card mb-4 card-home ">
         <% if teacher.teacher_video.attached? %>
           <%= cl_video_tag teacher.teacher_video.key, class: 'teacher-video card-image-rounded ', controls: true, width: 300, height: 200, crop: "fill" %>
         <% elsif teacher.user.avatar_image.attached? %>
-          <%= cl_image_tag teacher.user.avatar_image.key, gravity: "face", height: 300, width: 400, crop: "thumb", class: 'card-image-rounded  h-100' %>
+          <%= cl_image_tag teacher.user.avatar_image.key, gravity: "face", height: 250, width: 400, crop: "thumb", class: 'card-image-rounded  h-100' %>
         <% else %>
           <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-image-rounded'%>
         <% end %>
@@ -39,8 +41,8 @@
             </div>
               <li class="list-group-item"><%#= rating average %></li>
           </div>
+          <p class="text-center m-1"><%= link_to "Make appointment", new_teacher_appointment_path(teacher), class:"btn-main m-2 p-2" %></p>
         </div>
-         <p class="text-center m-2"><%= link_to "Make appointment", new_teacher_appointment_path(teacher), class:'btn btn-secondary rounded-pill' %></p>
       </div>
     </div>
     <% end %>

@@ -7,15 +7,22 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 #Reseting the seeds
+Message.destroy_all
+Chatroom.destroy_all
 puts "Comecei o seu seed tomara que dê tudo certo 🤞"
-Appointment.destroy_all
+puts "Estou destruindo suas Mensagens🤣"
+Message.destroy_all
+puts "Estou destruindo seus Chatrooms🤣"
+Chatroom.destroy_all
 puts "Estou destruindo seus Appointments🤣"
-TeacherCategory.destroy_all
+Appointment.destroy_all
 puts "Estou destruindo seus TeachersCategories😁"
-Teacher.destroy_all
+TeacherCategory.destroy_all
 puts "Estou destruindo seus TeachersCategories😊"
-User.destroy_all
+Teacher.destroy_all
 puts "Estou destruindo seus Usuarios😢"
+User.destroy_all
+puts "Estou destruindo suas Categorias😢"
 Category.destroy_all
 
 #Variables with range to populate Teachers Attributes
@@ -37,7 +44,7 @@ nodejs = Category.create!(name: 'Node.js', image: 'https://logospng.org/wp-conte
 java =Category.create!(name: 'JAVA', image: 'https://static.javatpoint.com/core/images/java-logo3.png')
 c = Category.create!(name: 'C', image: 'https://www.britefish.net/wp-content/uploads/2019/07/logo-c-1.png')
 
-#Functios do randomize the variables
+#Functions do randomize the variables
 def rand_day
   @seed_boolean.sample
 end

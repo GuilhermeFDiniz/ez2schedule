@@ -2,12 +2,11 @@
 <div class= 'container'>
   <div class="row">
     <% @appointments.each do |appointment| %>
+    <%= link_to appointment_path(appointment) do %>
     <div class="col-md-4">
       <div class="card">
-        <% if appointment.teacher.teacher_video.attached? %>
-          <%= cl_video_tag teacher.teacher_video.key, class: 'card-image-rounded ', controls: true %>
-        <% elsif appointment.teacher.user.avatar_image.attached? %>
-          <%= cl_image_tag teacher.user.avatar_image.key, :gravity=>"face", :height=>300, :width=>400, :crop=>"thumb", class: 'card-image-rounded  h-100' %>
+        <% if appointment.user.avatar_image.attached? %>
+          <%= cl_image_tag appointment.user.avatar_image.key, :gravity=>"face", :height=>300, :width=>400, :crop=>"thumb", class: 'card-image-rounded  h-100' %>
         <% else %>
           <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-image-rounded'%>
         <% end %>
@@ -41,11 +40,12 @@
             </ul>
             <p class="text-center m-3"><% if policy(appointment).edit? %>
               <%= link_to "Edit this appointment", edit_appointment_path(appointment), class:'btn btn-main' %>
+              <%= link_to "Cancel this appointment", appointment, method: :delete, class:'btn btn-main' if policy(appointment).destroy?   %></p>
             <% end %>
-            <%= link_to "Cancel this appointment", appointment, method: :delete, class:'btn btn-main' if policy(appointment).destroy?   %></p>
         </div>
       </div>
     </div>
+    <% end %>
     <% end %>
   </div>
 </div>

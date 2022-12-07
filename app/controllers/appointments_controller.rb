@@ -10,7 +10,7 @@ class AppointmentsController < ApplicationController
   def teacher_appointments
     @appointments_teacher = policy_scope(Appointment)
     @appointments = []
-    @appointments_teacher.each { |appointment| @appointments << appointment if appointment.teacher == current_user }
+    @appointments_teacher.each { |appointment| @appointments << appointment if appointment.teacher.user == current_user }
   end
 
   def show
@@ -31,12 +31,13 @@ class AppointmentsController < ApplicationController
     @appointment.state = 'pending'
     @appointment.user = current_user
     @appointment.teacher = @teacher
-    Chatroom.create!(user: current_user, teacher: @teacher, appointment: @appointment)
     authorize @appointment
     if @appointment.save
-
       Category.where(id: params[:appointment][:categories]).each do |category|
         AppointmentCategory.create!(appointment: @appointment, category: category)
+      end
+      if Chatroom.where(user: @appointment.user).where(teacher: @appointment.teacher).empty? && Chatroom.where(user: @appointment.teacher).where(teacher: @appointment.user).empty?
+        Chatroom.create!(user: current_user, teacher: @teacher, appointment: @appointment)
       end
       session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],

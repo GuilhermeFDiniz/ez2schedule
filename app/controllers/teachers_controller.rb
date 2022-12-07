@@ -12,8 +12,8 @@ class TeachersController < ApplicationController
 
   def create
     @teacher = Teacher.new(teacher_params)
-    @teacher.user = current_user
     authorize @teacher
+    @teacher.user = current_user
     if @teacher.save
       Category.where(id: params[:teacher][:categories]).each do |category|
         TeacherCategory.create!(teacher: @teacher, category: category)

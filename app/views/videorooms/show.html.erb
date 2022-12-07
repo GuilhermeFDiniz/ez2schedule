@@ -1,0 +1,32 @@
+<div>
+<div class="container-video">
+<% if @room %>
+ <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+  <div id="videos">
+      <div id="subscriber">
+        <section class="noSubscriber">
+
+        </section>
+      </div>
+      <div id="publisher"></div>
+  </div>
+  <%= javascript_tag do %>
+    <%= render(:partial => 'video', :handlers => [:erb], :formats => [:js]) %>
+  <% end %>
+<% else %>
+   <div class="noRoomContainer">
+    <section class="noRoom">
+      <h1>Lost in the clouds?</h1>
+      <p>
+        The room <strong>⁨/<%= params[:name] %></strong>⁩ is nowhere to be found. Are you sure you’ve entered the correct address?
+      </p>
+
+    </section>
+   </div>
+<% end %>
+</div>
+<div class="d-flex justify-content-center">
+  <%= link_to "Back to Home", root_path, class: 'btn btn-outline-dark m-1 back-room' %>
+  <%= link_to "Leave room", root_path, class: 'btn btn-outline-dark m-1 leave-room' %>
+</div>
+</div>

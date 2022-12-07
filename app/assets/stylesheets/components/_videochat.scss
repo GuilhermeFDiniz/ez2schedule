@@ -1,0 +1,9 @@
+#videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  gap: 1rem;
+}
+
+.OT_root {
+  height: 550px !important;
+}

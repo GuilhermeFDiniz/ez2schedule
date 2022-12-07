@@ -126,6 +126,9 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
+    httparty (0.20.0)
+      mime-types (~> 3.0)
+      multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
@@ -136,6 +139,7 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
+    jwt (2.5.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.8.1)
@@ -163,6 +167,7 @@ GEM
       money (~> 6.13)
       railties (>= 3.0)
     msgpack (1.6.0)
+    multi_xml (0.6.0)
     net-imap (0.3.1)
       net-protocol
     net-pop (0.1.2)
@@ -177,12 +182,17 @@ GEM
       racc (~> 1.4)
     nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
+    opentok (4.5.1)
+      activesupport (>= 2.0)
+      addressable (~> 2.3)
+      httparty (>= 0.18.0)
+      jwt (>= 1.5.6)
     orm_adapter (0.5.0)
     pg (1.4.5)
     pg_search (2.3.6)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
-    public_suffix (5.0.0)
+    public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
     pundit (2.2.0)
@@ -309,6 +319,7 @@ DEPENDENCIES
   jsbundling-rails
   letter_opener
   money-rails
+  opentok
   pg (~> 1.1)
   pg_search
   puma (~> 5.0)
