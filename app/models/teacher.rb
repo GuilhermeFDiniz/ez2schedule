@@ -7,7 +7,7 @@ class Teacher < ApplicationRecord
   monetize :price_cents
 
 
-  validates :user, uniqueness: true
+  validates :user, uniqueness: {message: 'This teacher has already registered.'}
 
   include PgSearch::Model
   pg_search_scope :search_by_all,

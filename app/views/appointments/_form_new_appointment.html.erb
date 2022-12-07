@@ -1,14 +1,14 @@
 <div>
   <%= simple_form_for [@teacher, appointment] do |f| %>
-    <%= f.input :description, class:"p-3 mb-2 bg-dark text-white" %>
-    <%= f.input :categories, collection: @teacher.categories %>
+    <strong><%= f.input :description, class:"categories p-3 mb-2" %> </strong>
+    <strong><%= f.input :categories, collection: @teacher.categories %></strong>
     <%= f.input :start_time, as: :hidden, input_html: {data: {teacher_calendar_target: "start"}} %>
     <%= f.input :end_time, as: :hidden, input_html: {data: {teacher_calendar_target: "end"}} %>
       <div class="d-flex justify-content-around">
         <%= f.input :remote %>
         <%= f.input :in_person %>
       </div>
-    <p class="form-new-appointment-price"> Preço: <%= humanized_money_with_symbol(@teacher.price_cents) %></p>
+    <p class="form-new-appointment-price"> Preço: <%= number_to_currency(@teacher.price_cents / 100.0, unit: "R$ ", separator: ",", delimiter: ".") %></p>
     <%= f.hidden_field :teacher_id, value: @teacher.id %>
     <%= f.button :submit, class: 'btn btn-main w-100 mt-3' %>
   <% end %>
