@@ -7,6 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 #Reseting the seeds
+Message.destroy_all
+Chatroom.destroy_all
 puts "Comecei o seu seed tomara que dê tudo certo 🤞"
 puts "Estou destruindo suas Mensagens🤣"
 Message.destroy_all
