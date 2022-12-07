@@ -11,11 +11,11 @@ class TeacherPolicy < ApplicationPolicy
   end
 
   def create?
-    teacher?
+    true
   end
 
   def update?
-    teacher?
+    true
   end
 
   private
