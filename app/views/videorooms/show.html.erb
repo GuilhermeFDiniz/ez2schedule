@@ -1,0 +1,10 @@
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @room.name %></dd>
+</dl>
+
+<div id="videos" data-controller="vonage" data-vonage-api-key="<%= ENV["VONAGE_KEY"]%>"
+data-vonage-session-id="<%=@room.session_id%>"
+data-vonage-token="<%= @token%>"
+data-vonage-name="<%=current_user.first_name%>"
+></div>
