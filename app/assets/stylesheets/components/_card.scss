@@ -8,6 +8,11 @@
 
 .cards-grid {
   margin-bottom: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+  width: 100%;
+  justify-items: center;
 }
 
 .card-image-rounded {
@@ -21,4 +26,20 @@
 
 .card-font {
   font-size: 15px;
+}
+
+.main-container {
+  display: flex;
+}
+
+@media(max-width: 992px) {
+  .cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
 }
