@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'student_appointments', on: :member
     get 'teacher_appointments', on: :member
     resources :payments, only: :new
+    resources :videorooms, only: [:new, :create, :show]
   end
 
   resources :chatrooms, only: [:index, :show] do
@@ -20,5 +21,5 @@ Rails.application.routes.draw do
   end
 
   mount StripeEvent::Engine, at: '/stripe-webhooks'
-  
+
 end

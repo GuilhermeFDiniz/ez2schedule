@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_04_235939) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_134337) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,8 +59,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_235939) do
     t.datetime "end_time"
     t.bigint "teacher_id", null: false
     t.bigint "user_id", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "checkout_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "state"
     t.boolean "remote"
     t.boolean "in_person"
     t.index ["teacher_id"], name: "index_appointments_on_teacher_id"
@@ -114,7 +117,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_235939) do
     t.boolean "sunday"
     t.time "start_time"
     t.time "end_time"
-    t.integer "price"
     t.boolean "remote"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -140,6 +142,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_235939) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "videorooms", force: :cascade do |t|
+    t.string "session_token"
+    t.string "generated_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "appointment_id", null: false
+    t.index ["appointment_id"], name: "index_videorooms_on_appointment_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointment_categories", "appointments"
@@ -154,4 +165,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_235939) do
   add_foreign_key "teacher_categories", "categories"
   add_foreign_key "teacher_categories", "teachers"
   add_foreign_key "teachers", "users"
+  add_foreign_key "videorooms", "appointments"
 end
