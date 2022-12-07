@@ -6,7 +6,7 @@ class AppointmentPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    record.user == user || record.teacher.user == user
   end
 
   def create?
@@ -14,10 +14,10 @@ class AppointmentPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
+    record.user == user || record.teacher.user == user
   end
 
   def destroy?
-    record.user == user
+    record.user == user || record.teacher.user == user
   end
 end

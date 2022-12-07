@@ -1,0 +1,39 @@
+const apiKey = <%= ENV['VONAGE_KEY'] %>;
+const sessionId = '<%= @room.session_token %>';
+const token = '<%= @room.generated_token %>';
+
+const handleError = (errors) => {
+  console.log(errors)
+}
+
+const initializeSession = () => {
+  const session = OT.initSession(apiKey, sessionId);
+  // Create a publisher
+  const publisher = OT.initPublisher('publisher', {
+    insertMode: 'append',
+    width: '100%',
+    height: '100%',
+  }, handleError);
+
+  // Connect to the session
+  session.connect(token, function(error) {
+    // If the connection is successful, publish to the session
+    if (error) {
+      handleError(error);
+    } else {
+      session.publish(publisher, handleError);
+    }
+  });
+
+  // Create subscriber
+  session.on('streamCreated', function(event) {
+    session.subscribe(event.stream, 'subscriber', {
+      insertMode: 'append',
+      width: '100%',
+      height: '100%'
+    }, handleError);
+  });
+
+}
+
+initializeSession();

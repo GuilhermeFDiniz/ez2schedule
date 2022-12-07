@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'teacher_appointments', on: :member
 
     resources :payments, only: :new
+    resources :videorooms, only: [:new, :create, :show]
   end
 
   resources :chatrooms, only: [:index, :show] do

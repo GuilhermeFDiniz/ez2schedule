@@ -21,6 +21,11 @@
             <li class="list-group-item"><%= @appointment.end_time %></li>
             <li class="list-group-item"><%= @appointment.remote %></li>
             </ul>
+            <% if @appointment.user == current_user || @appointment.teacher.user == current_user%>
+                <%= link_to appointment_videorooms_path(@appointment), data: { "turbo-method": :post }, class: 'btn-room' do %>
+                  <span class='enter-room mt-2'><i class="fas fa-video" style='display:inline;'></i> | Enter Room</span>
+                <% end %>
+              <% end %>
           <% if policy(@appointment).edit? %>
             <%= link_to "Edit this @appointment", edit_appointment_path(@appointment), class:'btn btn-primary' %>
           <% end %>
