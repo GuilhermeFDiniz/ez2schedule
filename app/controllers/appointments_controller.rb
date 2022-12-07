@@ -27,6 +27,9 @@ class AppointmentsController < ApplicationController
 
   def create
     @teacher = Teacher.find(params[:teacher_id])
+    start_date = Date.today
+    @appointments = @teacher.appointments.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
+
     @appointment = Appointment.new(appointment_params)
     @appointment.state = 'pending'
     @appointment.user = current_user
@@ -57,7 +60,6 @@ class AppointmentsController < ApplicationController
       )
       @appointment.update(checkout_session_id: session.id)
       redirect_to new_appointment_payment_path(@appointment)
-
     else
       render :new, status: :unprocessable_entity
     end

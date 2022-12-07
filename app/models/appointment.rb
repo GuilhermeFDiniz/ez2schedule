@@ -6,6 +6,10 @@ class Appointment < ApplicationRecord
   belongs_to :user
   has_one :videoroom
   monetize :amount_cents
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :description, presence: true
+
 
   private
 
