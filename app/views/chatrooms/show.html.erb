@@ -34,7 +34,11 @@
         data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
         data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
       <div class="chatroom">
-        <h1>Chat with <%= @chatroom.teacher.user.first_name %></h1>
+        <% if @chatroom.user == current_user %>
+          <h1>Chat with <%= @chatroom.teacher.user.first_name %></h1>
+        <% elsif @chatroom.teacher.user == current_user %>
+          <h1>Chat with <%= @chatroom.user.first_name %></h1>
+        <% end %>
         <div class="messages" data-chatroom-subscription-target="messages">
           <% @chatroom.messages.each do |message| %>
             <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
