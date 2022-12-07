@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: %i[destroy edit update show]
+  before_action :set_appointment, only: %i[destroy edit update show successfull_payment]
 
   def student_appointments
     @appointments_student = policy_scope(Appointment)
@@ -52,7 +52,7 @@ class AppointmentsController < ApplicationController
           quantity: 1
         }],
         mode: 'payment',
-        success_url: appointment_url(@appointment),
+        success_url: successfull_payment_appointment_url(@appointment),
         cancel_url: appointment_url(@appointment)
       )
       @appointment.update(checkout_session_id: session.id)
@@ -83,6 +83,9 @@ class AppointmentsController < ApplicationController
     authorize @appointment
     @appointment.destroy
     redirect_to appointments_path, notice: "Appointment was successfully canceled."
+  end
+
+  def successfull_payment
   end
 
   private

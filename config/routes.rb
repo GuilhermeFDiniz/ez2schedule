@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :appointments, only: [:edit, :update, :show, :destroy] do
     get 'student_appointments', on: :member
     get 'teacher_appointments', on: :member
-
+    get 'successfull_payment', on: :member
     resources :payments, only: :new
     resources :videorooms, only: [:new, :create, :show]
   end
