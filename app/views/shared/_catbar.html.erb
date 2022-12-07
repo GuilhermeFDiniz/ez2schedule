@@ -1,7 +1,7 @@
 <nav class="navbar px-2 mb-3 border rounded bg-white">
   <div class="container-fluid">
     <% @categories.each do |category| %>
-      <%= link_to root_path(filter: category.name), class:"navbar-brand d-flex flex-column align-items-center justify-content-center" do %>
+      <%= link_to root_path(filter: category.name), :data => {:reload => true}, class:"navbar-brand d-flex flex-column align-items-center justify-content-center" do %>
         <img src="<%=category.image%>" alt="" style="width:40px;height:40px;">
         <%= category.name %>
       <% end %>
