@@ -4,13 +4,13 @@
     <strong><p class= "text-center">Change your life and learn to code with our teachers around the world.</p></strong>
     </div>
 </div>
-<div class="m-4 mt-4 w-10 h-10" class="catbar-rounded" >
+<div class="container">
     <%= render "shared/catbar" %>
 </div>
-<div class= 'container'>
+<div class="container mx-auto">
   <div class="row cards-grid" id='cards'>
    <% @teachers.each do |teacher| %>
-    <div class="col-3">
+    <div>
       <div class="card mb-4 card-home ">
         <% if teacher.teacher_video.attached? %>
           <%= cl_video_tag teacher.teacher_video.key, class: 'teacher-video card-image-rounded ', controls: true, width: 300, height: 200, crop: "fill" %>
