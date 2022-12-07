@@ -39,8 +39,8 @@
             </li>
           <% else %>
             <li class="nav-item d-flex">
-              <%= link_to "Login", new_user_session_path, class: "nav-link m-1" %>
-              <%= link_to "SignUp", new_user_registration_path, class: "nav-link m-1" %>
+             <strong><%= link_to "Login", new_user_session_path, class: "btn btn-secondary rounded-pill nav-link m-1",  class: "btn-main m-2 p-2" %></strong>
+              <strong><%= link_to "SignUp", new_user_registration_path, class: "nav-link m-1", class: "btn-main m-2 p-2" %></strong>
             </li>
           <% end %>
       </ul>

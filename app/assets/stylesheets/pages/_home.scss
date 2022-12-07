@@ -1,1 +1,8 @@
 // Specific CSS for your home-page
+
+.container-home {
+  display:flex;
+  justify-content: center;
+  gap: 24px;
+  padding-left: 20px;
+}
