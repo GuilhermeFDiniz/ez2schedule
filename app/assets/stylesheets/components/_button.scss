@@ -1,7 +1,11 @@
 .btn-main {
   background-color: #000;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 50px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
   &:hover {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
