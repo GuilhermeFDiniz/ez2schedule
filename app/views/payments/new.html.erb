@@ -1,41 +1,36 @@
-<div class="container">
-  <div class="row py-4">
-    <div class="col">
-      <div class="d-flex justify-content-center">
-      <div>
-        <div>
-          <h1>Checkout summary</h1>
-        </div>
-        <div class="d-flex">
-          <div class="p-2">
-            <% if @appointment.teacher.teacher_video.attached? %>
-              <%= cl_video_tag @appointment.teacher.teacher_video.key, class: 'card-image-rounded ', controls: true %>
-            <% elsif @appointment.teacher.user.avatar_image.attached? %>
-              <%= cl_image_tag @appointment.teacher.user.avatar_image.key, :gravity=>"face", :height=>300, :width=>400, :crop=>"thumb", class: 'card-image-rounded  h-100' %>
-            <% else %>
-              <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-image-rounded',  :height=>300, :width=>400%>
-            <% end %>
-          </div>
-          <div class="p-2">
-            <p><strong>Teacher: <%= @appointment.teacher.user.first_name %></strong> </p>
-            <p><strong>Price: <%= humanized_money_with_symbol(@appointment.teacher.price_cents) %></strong></p>
-            <p><strong> <%=  @appointment.start_time.strftime("Date: %F | Starting Time: %T") %> </strong></p>
-            <p><strong><%= @appointment.remote ? "Remote" : "In person" %></strong></p>
-            <button id="pay" class="btn btn-primary">Purchase</button>
-            <script src="https://js.stripe.com/v3/"></script>
-            <script>
-            const paymentButton = document.getElementById('pay');
-            paymentButton.addEventListener('click', () => {
-              const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
-              stripe.redirectToCheckout({
-                sessionId: '<%= @appointment.checkout_session_id %>'
-              });
-            });
-            </script>
-            </div>
-          </div>
-        </div>
-      </div>
+<h1 class='text-center my-5'>Checkout Summary</h1>
+<div class="container payment-card mt-5 px-5">
+  <div class="row pt-5">
+    <div class="col-6 ">
+      <% if @appointment.teacher.teacher_video.attached? %>
+        <%= cl_video_tag @appointment.teacher.teacher_video.key, class: 'card-image-rounded', :height=>350, :width=>400 , controls: true %>
+      <% elsif @appointment.teacher.user.avatar_image.attached? %>
+        <%= cl_image_tag @appointment.teacher.user.avatar_image.key, :gravity=>"face", :height=>400, :width=>400, :crop=>"thumb", class: 'card-image-rounded  h-100' %>
+      <% else %>
+        <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-image-rounded',  :height=>300, :width=>400%>
+      <% end %>
+    </div>
+    <div class="col-6 ">
+      <p><strong>Teacher:</strong> <%= @appointment.teacher.user.first_name %> </p>
+      <p><strong>About:</strong> <%= @appointment.teacher.user.about %> </p>
+      <p><strong>Categories:</strong> <% @appointment.categories.each do |category|%>
+      <%= category.name %>
+      <%end%> </p>
+      <p><strong>Description:</strong> <%= @appointment.description %> </p>
+      <p><strong>Price:</strong> <%= humanized_money_with_symbol(@appointment.teacher.price_cents) %></p>
+      <p><strong> <%=  @appointment.start_time.strftime("Date: %F | Starting Time: %T") %> </strong></p>
+      <p><strong>Location: </strong><%= @appointment.remote ? "Remote" : "In person" %></p>
+      <button id="pay" class="btn btn-dark">Purchase</button>
+      <script src="https://js.stripe.com/v3/"></script>
+      <script>
+      const paymentButton = document.getElementById('pay');
+      paymentButton.addEventListener('click', () => {
+        const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+        stripe.redirectToCheckout({
+          sessionId: '<%= @appointment.checkout_session_id %>'
+        });
+      });
+      </script>
     </div>
   </div>
 </div>

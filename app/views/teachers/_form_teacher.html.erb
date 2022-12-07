@@ -2,7 +2,7 @@
   <h1 class= 'mt-5 text-center'>Register as a Teacher</h1>
   <div class="new-teacher-form">
     <div class='row'>
-      <div class='col-4'>
+      <div class='col-3'>
         <label class= mb-3>Availibility</label>
         <%= f.input :monday, as: :boolean %>
         <%= f.input :tuesday, as: :boolean %>
@@ -11,20 +11,22 @@
         <%= f.input :friday, as: :boolean %>
         <%= f.input :saturday, as: :boolean %>
         <%= f.input :sunday, as: :boolean %>
+      </div>
+      <div class="col-3">
         <%= f.input :start_time, discard_minute: true %>
         <%= f.input :end_time, discard_minute: true %>
-      </div>
-      <div class="col-4">
-        <label class= mb-3>Location</label>
-        <%= f.input :remote, as: :boolean %>
-        <%= f.input :in_person, as: :boolean %>
         <%= f.input :price, :label => 'R$' %>
-        <%= f.input :categories, collection: Category.all, input_html: { multiple: true, data:{controller: 'tom-select'} } %>
       </div>
 
-      <div class="col-4">
+      <div class="col-6">
+        <%= f.input :categories, collection: Category.all, input_html: { multiple: true, data:{controller: 'tom-select'} } %>
+        <label class=mb-3>Location</label>
+        <div class='d-flex justify-content-around'>
+        <%= f.input :remote, as: :boolean %>
+        <%= f.input :in_person, as: :boolean %>
+        </div>
         <%= f.input :teacher_video, as: :file %>
-        <%= f.button :submit, class: "btn btn-dark martin-top" %>
+        <%= f.button :submit, class: "btn btn-dark mt-5" %>
         <%= f.error :user, class:'text-danger'%>
       </div>
     </div>
