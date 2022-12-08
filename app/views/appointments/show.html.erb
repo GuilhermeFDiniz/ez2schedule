@@ -1,59 +1,78 @@
 <h1 class="page-title text-center">Appointment #<%= @appointment.id %><h1>
-
 <div class="container">
   <div class="div-show-appointment">
     <div class="d-flex flex-column pe-5">
-    <div><%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%> </div>
-    <div>
-      <p class="show-appointment-text"><strong>Date:</strong> <%= @appointment.start_time.strftime('%F') %></p>
-      <p class="show-appointment-text"><strong>Start Time:</strong> <%= @appointment.start_time.strftime('%T') %></p>
-      <p class="show-appointment-text"><strong>End Time:</strong> <%= @appointment.end_time.strftime('%T') %></p>
-      <p class="show-appointment-text"><strong>Location:</strong> <%= @appointment.remote ? "Remote" : "In Person" %></p>
+      <div><%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%>
+      </div>
+      <div>
+        <p class="show-appointment-text"><strong>Date:</strong> <%= @appointment.start_time.strftime('%F') %></p>
+        <p class="show-appointment-text"><strong>Start Time:</strong> <%= @appointment.start_time.strftime('%T') %></p>
+        <p class="show-appointment-text"><strong>End Time:</strong> <%= @appointment.end_time.strftime('%T') %></p>
+        <p class="show-appointment-text"><strong>Location:</strong> <%= @appointment.remote ? "Remote" : "In Person" %></p>
+      </div>
     </div>
-    </div>
-
     <div>
       <div class="d-flex justify-content-between">
-      <p class="show-appointment-text"><strong>Teacher:</strong> <%= @appointment.teacher.user.first_name %></p>
-      <p class="show-appointment-text"><strong>Price:</strong> <%= @appointment.teacher.price %></p>
-
+        <p class="show-appointment-text"><strong>Teacher:</strong> <%= @appointment.teacher.user.first_name %></p>
+        <p class="show-appointment-text"><strong>Price:</strong> <%= @appointment.teacher.price %></p>
       </div>
       <p class="show-appointment-text"><strong>About Teacher:</strong> <%= @appointment.teacher.user.about %></p>
       <p class="show-appointment-text"><strong>Appointment description:</strong> <%= @appointment.description %></p>
       <div class="d-flex">
-      <div class="show-appointment-text"><strong>Categories:</strong></div>
+        <div class="show-appointment-text"><strong>Categories:</strong>
+        </div>
         <% @appointment.categories.each do |category|%>
           <div class="show-appointment-text"><%= category.name%></div>
         <%end%>
       </div>
       <div>
-      <% if @appointment.user == current_user || @appointment.teacher.user == current_user%>
-        <%= link_to appointment_videorooms_path(@appointment), data: { "turbo-method": :post }, class: 'btn-room' do %>
-        <div>
-          <i class="fas fa-video"></i>
-          <span class='enter-room mt-2'>Enter Room</span>
+        <div class="d-flex">
+          <div>
+            <% if !@appointment.rating.nil? %>
+              <p class="show-appointment-text"><strong>Review:</strong></p>
+              <div>
+                <% if @appointment.user.avatar_image.attached?%>
+                  <%= cl_image_tag @appointment.user.avatar_image.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, :gravity=>"face", :height=>45, :width=>45, :crop=>"thumb" %>
+                <% else %>
+                  <%= image_tag "https://www.computerhope.com/jargon/g/guest-user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% end %>
+              </div>
+              <li class="list-group-item show-appointment-text">
+                <small>
+                  <% count = 0 %>
+                  <% 5.times do %>
+                    <% if @appointment.rating > count %>
+                      <i class="fas fa-star"></i>
+                    <% else %>
+                      <i class="far fa-star"></i>
+                    <% end %>
+                    <% count += 1 %>
+                  <% end %>
+                </small>
+              </li>
+              <li class="list-group-item show-appointment-text"><%=@appointment.review_content%></li>
+            <% end %>
           </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-around">
+        <% if @appointment.user == current_user || @appointment.teacher.user == current_user%>
+          <%= link_to appointment_videorooms_path(@appointment), data: { "turbo-method": :post }, class: 'btn-room text-decoration-none' do %>
+            <div class="nav-link">
+              <i class="fas fa-video"></i>
+              <span class='enter-room mt-2'>Join VideoRoom</span>
+            </div>
+          <% end %>
+          <%= link_to "Review this Appointment", review_appointment_path(@appointment), class:'btn btn-dark' unless @appointment.rating %>
         <% end %>
-      <% end %>
       </div>
     </div>
   </div>
 </div>
- <li class="list-group-item">
-              <small>
-                <% count = 0 %>
-                <% 5.times do %>
-                  <% if @appointment.rating > count %>
-                    <i class="fas fa-star"></i>
-                  <% else %>
-                    <i class="far fa-star"></i>
-                  <% end %>
-                  <% count += 1 %>
-                <% end %>
-              </small>
-              </li>
-            <li class="list-group-item"><%=@appointment.review_content%></li>
 
-           <%# <%= link_to "Edit this @appointment", edit_appointment_path(@appointment), class:'btn btn-primary' %>
-          <%# <%= button_to "Cancel this @appointment", @appointment, method: :delete if policy(@appointment).destroy? %>
-          <%= link_to "Review this @appointment", review_appointment_path(@appointment), class:'btn btn-dark' %>
+
+
+
+
+        <%# <%= link_to "Edit this @appointment", edit_appointment_path(@appointment), class:'btn btn-primary' %>
+      <%# <%= button_to "Cancel this @appointment", @appointment, method: :delete if policy(@appointment).destroy? %>
