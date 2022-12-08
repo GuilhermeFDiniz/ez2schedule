@@ -10,6 +10,6 @@
       </div>
     <p class="form-new-appointment-price"> Preço: <%= number_to_currency(@teacher.price_cents / 100.0, unit: "R$ ", separator: ",", delimiter: ".") %></p>
     <%= f.hidden_field :teacher_id, value: @teacher.id %>
-    <%= f.button :submit, class: 'btn btn-main w-100 mt-5' %>
+    <%= current_user == @teacher.user ? "This is Your Profile" : (f.button :submit, class: 'btn btn-main w-100 mt-5') %>
   <% end %>
 </div>

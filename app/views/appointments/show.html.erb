@@ -1,37 +1,44 @@
-  <%# <div class="row"> %>
-<h1 class="page-title text-center">My Appointment<h2>
-  <div class='container'>
-    <%# <div class="col-md-4"> %>
-      <div class="card mb-3" style="width: 75rem;">
-        <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%>
-        <div class="card-body">
-          <h5 class="card-title"><%= @appointment.teacher.user.first_name %></h5>
-          <p class="card-text"><%= @appointment.teacher.user.about %></p>
-            <ul class="list-group list-group-flush">
-            <% @appointment.teacher.categories.pluck(:name).each do |category| %>
-              <li class="list-group-item"><%=category%></li>
-            <% end %>
-            <li class="list-group-item"><%= @appointment.teacher.price %></li>
-            <li class="list-group-item"><%#= rating average %></li>
-            <li class="list-group-item"><%= @appointment.description %></li>
-            <% @appointment.categories.each do |category|%>
-              <li class="list-group-item"><%= category.name%></li>
-            <%end%>
-            <li class="list-group-item"><%= @appointment.start_time %></li>
-            <li class="list-group-item"><%= @appointment.end_time %></li>
-            <li class="list-group-item"><%= @appointment.remote %></li>
-            </ul>
-            <% if @appointment.user == current_user || @appointment.teacher.user == current_user%>
-                <%= link_to appointment_videorooms_path(@appointment), data: { "turbo-method": :post }, class: 'btn-room' do %>
-                  <span class='enter-room mt-2'><i class="fas fa-video" style='display:inline;'></i> | Enter Room</span>
-                <% end %>
-              <% end %>
-          <% if policy(@appointment).edit? %>
-            <%= link_to "Edit this @appointment", edit_appointment_path(@appointment), class:'btn btn-primary' %>
-          <% end %>
-           <%= button_to "Cancel this @appointment", @appointment, method: :delete if policy(@appointment).destroy? %>
-        </div>
+<h1 class="page-title text-center">Appointment #<%= @appointment.id %><h1>
+
+<div class="container">
+  <div class="div-show-appointment">
+    <div class="d-flex flex-column pe-5">
+    <div><%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%> </div>
+    <div>
+      <p class="show-appointment-text"><strong>Date:</strong> <%= @appointment.start_time.strftime('%F') %></p>
+      <p class="show-appointment-text"><strong>Start Time:</strong> <%= @appointment.start_time.strftime('%T') %></p>
+      <p class="show-appointment-text"><strong>End Time:</strong> <%= @appointment.end_time.strftime('%T') %></p>
+      <p class="show-appointment-text"><strong>Location:</strong> <%= @appointment.remote ? "Remote" : "In Person" %></p>
+    </div>
+    </div>
+
+    <div>
+      <div class="d-flex justify-content-between">
+      <p class="show-appointment-text"><strong>Teacher:</strong> <%= @appointment.teacher.user.first_name %></p>
+      <p class="show-appointment-text"><strong>Price:</strong> <%= @appointment.teacher.price %></p>
       </div>
-    <%# </div> %>
+      <p class="show-appointment-text"><strong>About Teacher:</strong> <%= @appointment.teacher.user.about %></p>
+      <p class="show-appointment-text"><strong>Appointment description:</strong> <%= @appointment.description %></p>
+      <div class="d-flex">
+      <div class="show-appointment-text"><strong>Categories:</strong></div>
+        <% @appointment.categories.each do |category|%>
+          <div class="show-appointment-text"><%= category.name%></div>
+        <%end%>
+      </div>
+      <div>
+      <% if @appointment.user == current_user || @appointment.teacher.user == current_user%>
+        <%= link_to appointment_videorooms_path(@appointment), data: { "turbo-method": :post }, class: 'btn-room' do %>
+        <div>
+          <i class="fas fa-video"></i>
+          <span class='enter-room mt-2'>Enter Room</span>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
   </div>
-<%# </div> %>
+</div>
+
+
+           <%# <%= link_to "Edit this @appointment", edit_appointment_path(@appointment), class:'btn btn-primary' %>
+          <%# <%= button_to "Cancel this @appointment", @appointment, method: :delete if policy(@appointment).destroy? %>
