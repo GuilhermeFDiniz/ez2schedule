@@ -7,8 +7,8 @@ import { application } from "./application"
 import ChatroomSubscriptionController from "./chatroom_subscription_controller"
 application.register("chatroom-subscription", ChatroomSubscriptionController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import LocationController from "./location_controller"
+application.register("location", LocationController)
 
 import TeacherCalendarController from "./teacher_calendar_controller"
 application.register("teacher-calendar", TeacherCalendarController)
