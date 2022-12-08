@@ -5,39 +5,38 @@
       <%= f.error_notification %>
       <div class="form-inputs d-flex d-grid gap-5">
         <div>
-          <%= f.input :email, required: true, autofocus: true %>
-          <%= f.input :first_name, required: true, autofocus: true %>
-          <%= f.input :last_name, required: true, autofocus: true %>
-          <%= f.input :address, required: false, autofocus: true %>
-          <%= f.input :avatar_image, as: :file %>
+          <strong><%= f.input :email, required: true, autofocus: true %></strong>
+          <strong><%= f.input :first_name, required: true, autofocus: true %></strong>
+          <strong><%= f.input :last_name, required: true, autofocus: true %></strong>
+          <strong><%= f.input :address, required: false, autofocus: true %></strong>
+          <strong><%= f.input :avatar_image, as: :file %></strong>
         </div>
         <div>
-          <%= f.input :about, required: false, autofocus: true %>
+           <strong><%= f.input :about, required: false, autofocus: true %></strong>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
           <% end %>
 
-          <%= f.input :password,
+          <strong><%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation,
+                input_html: { autocomplete: "new-password" } %></strong>
+          <strong><%= f.input :password_confirmation,
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
-          <%= f.input :current_password,
+                input_html: { autocomplete: "new-password" } %></strong>
+          <strong><%= f.input :current_password,
                 hint: "we need your current password to confirm your changes",
                 required: true,
-                input_html: { autocomplete: "current-password" } %>
+                input_html: { autocomplete: "current-password" } %></strong>
         </div>
       </div>
-
       <div class="form-actions">
-        <%= f.button :submit, "Update", class:"btn btn-dark" %>
+        <%= f.button :submit, "Update", class:"btn btn-dark w-50" %>
       </div>
     <% end %>
 
-    <div class="d-flex d-grid gap-5">
+    <div class="d-flex d-grid gap-4 align-items-center p-2">
       <div class="d-flex align-items-center">
         <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link", class:"btn btn-dark" %>
       </div>

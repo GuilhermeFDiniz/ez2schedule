@@ -3,12 +3,21 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1> <%= @greeting1 %> <%= @appointment.user.first_name %> <%= @appointment.user.last_name %>!</h1>
+    <h2> <%= @greeting1 %> <%= @appointment.user.first_name %> <%= @appointment.user.last_name %>!</h2>
+  <div>
     <h3>Here is all the information about your order:</h3>
     <p>
      <br> <strong>Seller:</strong> <%= @appointment.teacher.user.first_name %>
      <br> <strong>Price:</strong> <%= @appointment.teacher.price %>
      <br> <strong>Description:</strong>  <%= @appointment.description %>
+     <br> <strong>Time:</strong> <%= @appointment.start_time.strftime("%A, %d/%m/%Y, %H:%M") %>
+    <br> <strong>Location:</strong>  <%= @appointment.remote ? "Remote" : "In Person" %>
     </p>
+  </div>
+  <div class="card card-image-rounded mb-5" >
+        <% if @appointment.teacher.teacher_video.attached? %>
+          <%= cl_video_tag @appointment.teacher.teacher_video.key, :gravity=>"face", :height=>300, :width=>400, :crop=>"thumb", class: 'card-image-rounded  h-100' %>
+        <% end %>
+  </div>
   </body>
 </html>

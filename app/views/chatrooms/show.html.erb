@@ -1,7 +1,7 @@
 <div class='chatroom-container'>
   <div class="row">
     <div class="col-3">
-      <h3><strong>Your Conversations</strong></h3>
+      <strong><h3>My Conversations</h3></strong>
       <div class="d-flex flex-column justify-content-between chat-list-names">
         <% @chatrooms.each do |chatroom| %>
           <%= link_to chatroom_path(chatroom) do %>
