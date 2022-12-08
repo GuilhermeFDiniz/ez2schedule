@@ -73,6 +73,7 @@ teacher1.teacher_video.attach(io: teacher1_video, filename: 'guilherme.mp4', con
 user2_image = URI.open('https://res.cloudinary.com/dqm4dcsvx/image/upload/v1670510042/Avatar/rodolfo_xesejr.jpg')
 user2 = User.create!(email: 'rodolfo@teacher', password: '123123', first_name: 'Rodolfo', last_name: 'Campos', about: Faker::Lorem.paragraph(sentence_count: 10, supplemental: true, random_sentences_to_add: 2))
 user2.avatar_image.attach(io: user2_image, filename: 'rodolfo.jpg', content_type: 'image/jpg')
+
 teacher2_video = URI.open('https://res.cloudinary.com/dqm4dcsvx/video/upload/v1670247745/Videos/Rodolfo_rijmfl.mp4')
 teacher2 = Teacher.create!(user: user2, monday: rand_day, tuesday:rand_day, wednesday:rand_day, thursday:rand_day, friday:rand_day, saturday: rand_day, sunday:rand_day, start_time: rand_start_time, end_time: rand_end_time.to_time, price: rand_price)
 teacher2.teacher_video.attach(io: teacher2_video, filename: 'rodolfo.mp4', content_type: 'video/mp4')
@@ -199,6 +200,7 @@ teacher19.teacher_video.attach(io: teacher19_video, filename: 'patricia.mp4', co
 user20_image = URI.open('https://res.cloudinary.com/dqm4dcsvx/image/upload/v1670510042/Avatar/fabio_psjqny.png')
 user20 = User.create!(email: 'fabio@teacher', password: '123123', first_name: 'Fabio', last_name: 'Gardinal', about: Faker::Lorem.paragraph(sentence_count: 10, supplemental: true, random_sentences_to_add: 2))
 user20.avatar_image.attach(io: user20_image, filename: 'fabio.jpg', content_type: 'fabio/jpg')
+
 teacher20_video = URI.open('https://res.cloudinary.com/dqm4dcsvx/video/upload/v1670246698/Videos/Fabio_o0necp.mp4')
 teacher20 = Teacher.create!(user: user20, monday: rand_day, tuesday: rand_day, wednesday: rand_day, thursday:rand_day, friday:rand_day, saturday: rand_day, sunday:rand_day, start_time: rand_start_time, end_time: rand_end_time.to_time, price: rand_price)
 teacher20.teacher_video.attach(io: teacher20_video, filename: 'fabio.mp4', content_type: 'video/mp4')
