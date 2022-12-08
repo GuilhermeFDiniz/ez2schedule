@@ -16,6 +16,7 @@
       <div class="d-flex justify-content-between">
       <p class="show-appointment-text"><strong>Teacher:</strong> <%= @appointment.teacher.user.first_name %></p>
       <p class="show-appointment-text"><strong>Price:</strong> <%= @appointment.teacher.price %></p>
+
       </div>
       <p class="show-appointment-text"><strong>About Teacher:</strong> <%= @appointment.teacher.user.about %></p>
       <p class="show-appointment-text"><strong>Appointment description:</strong> <%= @appointment.description %></p>
@@ -38,7 +39,21 @@
     </div>
   </div>
 </div>
-
+ <li class="list-group-item">
+              <small>
+                <% count = 0 %>
+                <% 5.times do %>
+                  <% if @appointment.rating > count %>
+                    <i class="fas fa-star"></i>
+                  <% else %>
+                    <i class="far fa-star"></i>
+                  <% end %>
+                  <% count += 1 %>
+                <% end %>
+              </small>
+              </li>
+            <li class="list-group-item"><%=@appointment.review_content%></li>
 
            <%# <%= link_to "Edit this @appointment", edit_appointment_path(@appointment), class:'btn btn-primary' %>
           <%# <%= button_to "Cancel this @appointment", @appointment, method: :delete if policy(@appointment).destroy? %>
+          <%= link_to "Review this @appointment", review_appointment_path(@appointment), class:'btn btn-dark' %>

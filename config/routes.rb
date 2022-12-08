@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     get 'student_appointments', on: :member
     get 'teacher_appointments', on: :member
     get 'successfull_payment', on: :member
+    get 'review', to: 'appointments#review', on: :member
+    patch 'review', to: 'appointments#update_review', on: :member
+
     resources :payments, only: :new
     resources :videorooms, only: [:new, :create, :show]
   end

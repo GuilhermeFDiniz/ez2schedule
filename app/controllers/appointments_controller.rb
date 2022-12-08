@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: %i[destroy edit update show successfull_payment]
+  before_action :set_appointment, only: %i[destroy edit update show successfull_payment review update_review]
 
   def student_appointments
     @appointments_student = policy_scope(Appointment)
@@ -90,6 +90,21 @@ class AppointmentsController < ApplicationController
   def successfull_payment
   end
 
+  def review
+    authorize @appointment
+
+  end
+
+  def update_review
+    authorize @appointment
+    if @appointment.update(appointment_params)
+      redirect_to student_appointments_appointment_path, notice: "Review successfully created."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+
+  end
+
   private
 
   def set_appointment
@@ -97,6 +112,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:start_time, :end_time, :description, :remote)
+    params.require(:appointment).permit(:start_time, :end_time, :description, :remote, :rating, :review_content)
   end
 end
