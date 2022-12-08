@@ -1,9 +1,9 @@
+      <h1 class="text-center page-title">Login</h1>
 
 <div class="container form-container">
   <div class="row">
     <div class="col-12">
       <div class="form-login">
-      <h2>Login</h2>
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
         <div class="form-inputs">
           <%= f.input :email,
