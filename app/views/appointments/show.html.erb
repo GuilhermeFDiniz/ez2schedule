@@ -26,10 +26,10 @@
         <%end%>
       </div>
       <div>
-        <div class="d-flex">
-          <div>
+        <div>
+        <p class="show-appointment-text"><strong>Review:</strong></p>
+          <div class="d-flex">
             <% if !@appointment.rating.nil? %>
-              <p class="show-appointment-text"><strong>Review:</strong></p>
               <div>
                 <% if @appointment.user.avatar_image.attached?%>
                   <%= cl_image_tag @appointment.user.avatar_image.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, :gravity=>"face", :height=>45, :width=>45, :crop=>"thumb" %>
@@ -37,6 +37,7 @@
                   <%= image_tag "https://www.computerhope.com/jargon/g/guest-user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                 <% end %>
               </div>
+              <div>
               <li class="list-group-item show-appointment-text">
                 <small>
                   <% count = 0 %>
@@ -51,6 +52,7 @@
                 </small>
               </li>
               <li class="list-group-item show-appointment-text"><%=@appointment.review_content%></li>
+              </div>
             <% end %>
           </div>
         </div>
