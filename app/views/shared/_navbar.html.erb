@@ -38,10 +38,13 @@
               </div>
             </li>
           <% else %>
-            <li class="nav-item d-flex">
-             <strong><%= link_to "Login", new_user_session_path, class: "btn btn-secondary rounded-pill nav-link m-1",  class: "btn-main m-2 p-2" %></strong>
-              <strong><%= link_to "SignUp", new_user_registration_path, class: "nav-link m-1", class: "btn-main m-2 p-2" %></strong>
-            </li>
+            <li class="nav-item pe-2">
+             <strong><%= link_to "Login", new_user_session_path, class: "nav-link" %></strong>
+             </li>
+
+            <li class="nav-item pe-2">
+              <strong><%= link_to "SignUp", new_user_registration_path, class: "nav-link" %></strong>
+              </li>
           <% end %>
       </ul>
     </div>
