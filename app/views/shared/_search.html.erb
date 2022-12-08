@@ -1,10 +1,10 @@
-<%= form_with url: root_path, method: :get, class: "d-flex nav-search" do %>
+<%= form_with url: root_path, method: :get, class: "d-flex nav-search rounded-pill" do %>
   <%= text_field_tag :query,
     params[:query],
-    class: "form-control",
+    class: "form-control rounded-pill search-teacher",
     placeholder: "Buscar por Professor ou Categoria"
   %>
-  <%= button_tag(class: "nav-link nav-btn") do %>
-    <i class= "fa-solid fa-magnifying-glass"></i>
+  <%= button_tag(class: "nav-link nav-btn rounded-pill search-button") do %>
+    <i class= "fa-solid fa-magnifying-glass rounded-pill"></i>
   <% end %>
 <% end %>
