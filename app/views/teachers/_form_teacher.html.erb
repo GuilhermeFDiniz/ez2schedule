@@ -13,9 +13,9 @@
         <%= f.input :sunday, as: :boolean %>
       </div>
       <div class="col-3">
-        <%= f.input :start_time, discard_minute: true %>
-        <%= f.input :end_time, discard_minute: true %>
-        <%= f.input :price, :label => 'R$' %>
+        <%= f.input :start_time, discard_minute: true, required: true, selected: 10 %>
+        <%= f.input :end_time, discard_minute: true, required:true %>
+        <%= f.input :price, :label => 'R$', required: true %>
       </div>
 
       <div class="col-6">
