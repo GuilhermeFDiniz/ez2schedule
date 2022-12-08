@@ -24,11 +24,12 @@
 // }
 
 .nav-link {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgb(0, 0, 0);
   border-radius: 4px;
   border: 0;
+  margin-top: 7px;
 }
 
 .nav-search {
@@ -38,14 +39,14 @@
 .nav-btn {
   border-radius: 0 4px 4px 0;
   border: 0;
-
+  margin-top: 0;
   &:hover {
     color:black;
   }
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgb(178, 178, 178);
 }
 
 .ez2schedule-logo {
