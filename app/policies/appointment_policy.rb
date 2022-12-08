@@ -21,12 +21,5 @@ class AppointmentPolicy < ApplicationPolicy
     record.user == user || record.teacher.user == user
   end
 
-  def review?
-    record.user == user
-  end
-
-  def update_review?
-    record.user == user
-  end
-
+  
 end

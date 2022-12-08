@@ -1,33 +1,33 @@
-<h1 class="page-title text-center">Appointment #<%= @appointment.id %><h1>
+<h1 class="page-title text-center m-4">Appointment<h1>
 <div class="container">
   <div class="div-show-appointment">
     <div class="d-flex flex-column pe-5">
       <div><%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-img-top'%>
       </div>
       <div>
-        <p class="show-appointment-text"><strong>Date:</strong> <%= @appointment.start_time.strftime('%F') %></p>
-        <p class="show-appointment-text"><strong>Start Time:</strong> <%= @appointment.start_time.strftime('%T') %></p>
-        <p class="show-appointment-text"><strong>End Time:</strong> <%= @appointment.end_time.strftime('%T') %></p>
-        <p class="show-appointment-text"><strong>Location:</strong> <%= @appointment.remote ? "Remote" : "In Person" %></p>
+        <p class="show-appointment-text my-3"><strong>Date:</strong> <%= @appointment.start_time.strftime('%A, %B %d, %Y') %></p>
+        <p class="show-appointment-text my-3"><strong>Start Time:</strong> <%= @appointment.start_time.strftime('%H:%M') %></p>
+        <p class="show-appointment-text my-3"><strong>End Time:</strong> <%= @appointment.end_time.strftime('%H:%M') %></p>
+        <p class="show-appointment-text my-3"><strong>Location:</strong> <%= @appointment.remote ? "Remote" : "In Person" %></p>
       </div>
     </div>
     <div>
       <div class="d-flex justify-content-between">
-        <p class="show-appointment-text"><strong>Teacher:</strong> <%= @appointment.teacher.user.first_name %></p>
-        <p class="show-appointment-text"><strong>Price:</strong> <%= @appointment.teacher.price %></p>
+        <p class="show-appointment-text mb-3"><strong>Teacher:</strong> <%= @appointment.teacher.user.first_name %></p>
+        <p class="show-appointment-text mb-3 me-3"><strong>Price:</strong> <%= @appointment.teacher.price %></p>
       </div>
-      <p class="show-appointment-text"><strong>About Teacher:</strong> <%= @appointment.teacher.user.about %></p>
-      <p class="show-appointment-text"><strong>Appointment description:</strong> <%= @appointment.description %></p>
+      <p class="show-appointment-text my-3"><strong>About Teacher:</strong> <%= @appointment.teacher.user.about %></p>
+      <p class="show-appointment-text my-3"><strong>Appointment description:</strong> <%= @appointment.description %></p>
       <div class="d-flex">
-        <div class="show-appointment-text"><strong>Categories:</strong>
+        <div class="show-appointment-text my-3"><strong>Categories:</strong>
         </div>
         <% @appointment.categories.each do |category|%>
-          <div class="show-appointment-text"><%= category.name%></div>
+          <div class="show-appointment-text my-3"><%= category.name%></div>
         <%end%>
       </div>
       <div>
         <div>
-        <p class="show-appointment-text"><strong>Review:</strong></p>
+        <p class="show-appointment-text mt-3 mb-5"><strong>Review:</strong></p>
           <div class="d-flex">
             <% if !@appointment.rating.nil? %>
               <div>
@@ -59,22 +59,15 @@
       </div>
       <div class="d-flex justify-content-around">
         <% if @appointment.user == current_user || @appointment.teacher.user == current_user%>
-          <%= link_to appointment_videorooms_path(@appointment), data: { "turbo-method": :post }, class: 'btn-room text-decoration-none' do %>
+          <%= link_to appointment_videorooms_path(@appointment), data: { "turbo-method": :post }, class: 'btn btn-main ' do %>
             <div class="nav-link">
               <i class="fas fa-video"></i>
               <span class='enter-room mt-2'>Join VideoRoom</span>
             </div>
           <% end %>
-          <%= link_to "Review this Appointment", review_appointment_path(@appointment), class:'btn btn-dark' unless @appointment.rating %>
+          <%= link_to "Review this Appointment", review_appointment_path(@appointment), class:'btn btn-main d-flex align-items-center' unless @appointment.rating %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-        <%# <%= link_to "Edit this @appointment", edit_appointment_path(@appointment), class:'btn btn-primary' %>
-      <%# <%= button_to "Cancel this @appointment", @appointment, method: :delete if policy(@appointment).destroy? %>

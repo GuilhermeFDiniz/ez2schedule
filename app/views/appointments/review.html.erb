@@ -9,7 +9,7 @@
           <p><b>Date:</b><%="#{@appointment.start_time.strftime(' %A, %B %d, %Y at %H:%M %p')}" %></p>
             <b><%= f.input :rating, collection: 0..5, :input_html => {:maxlength =>1,:style=> 'width:100px'} %></b>
             <b> <%= f.input :review_content, :label => "Review"%></b>
-            <%= f.submit 'Submit Review', class: 'btn btn-dark my-3' %>
+            <%= f.submit 'Submit Review', class: 'btn btn-main my-4' %>
           <% end %>
           <%= link_to "Back to My Appointments", student_appointments_appointment_path, class: 'links' %>
         </div>

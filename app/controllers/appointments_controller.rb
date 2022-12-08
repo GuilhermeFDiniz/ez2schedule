@@ -91,12 +91,10 @@ class AppointmentsController < ApplicationController
   end
 
   def review
-    authorize @appointment
 
   end
 
   def update_review
-    authorize @appointment
     if @appointment.update(appointment_params)
       redirect_to student_appointments_appointment_path, notice: "Review successfully created."
     else
