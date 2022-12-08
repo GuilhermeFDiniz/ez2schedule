@@ -4,9 +4,9 @@
     <strong><%= f.input :categories, collection: @teacher.categories, input_html: { multiple: true, data:{controller: 'tom-select'} }  %></strong>
     <%= f.input :start_time, as: :hidden, input_html: {data: {teacher_calendar_target: "start"}} %>
     <%= f.input :end_time, as: :hidden, input_html: {data: {teacher_calendar_target: "end"}} %>
-      <div class="d-flex justify-content-around">
-        <%= f.input :remote %>
-        <%= f.input :in_person %>
+      <div data-controller="location" class="d-flex justify-content-around">
+        <%= f.input :remote, input_html: {data:{ action:'change->location#disableInPerson', location_target: 'remote'} } %>
+        <%= f.input :in_person, input_html: {data:{ action:'change->location#disableRemote', location_target: 'inPerson'} } %>
       </div>
     <p class="form-new-appointment-price"> Preço: <%= number_to_currency(@teacher.price_cents / 100.0, unit: "R$ ", separator: ",", delimiter: ".") %></p>
     <%= f.hidden_field :teacher_id, value: @teacher.id %>
