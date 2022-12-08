@@ -3,7 +3,7 @@
   <div class="row d-flex justify-content-center">
     <% @appointments.each do |appointment| %>
     <div class="col-md-4">
-      <div class="card card-image-rounded mb-5" >
+      <div class="card student-card-image-rounded mb-5" >
         <% if appointment.teacher.teacher_video.attached? %>
           <%= cl_video_tag appointment.teacher.teacher_video.key, class: 'appointment-video', controls: true %>
         <% elsif appointment.teacher.user.avatar_image.attached? %>
