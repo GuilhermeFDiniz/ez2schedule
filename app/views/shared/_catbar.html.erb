@@ -1,4 +1,4 @@
-<nav class="navbar px-0 border rounded-pill bg-white d-flex justify-content-center w-75 mx-auto my-4">
+<nav class="navbar px-0 border rounded-pill bg-white d-flex justify-content-center w-100 mx-auto my-3">
   <div class="container-home">
     <% @categories.each do |category| %>
       <%= link_to root_path(filter: category.name), :data => {:reload => true}, class:"navbar-brand d-flex flex-column align-items-center justify-content-center" do %>
