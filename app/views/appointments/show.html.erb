@@ -12,7 +12,21 @@
               <li class="list-group-item"><%=category%></li>
             <% end %>
             <li class="list-group-item"><%= humanized_money_with_symbol(@appointment.teacher.price) %></li>
-            <li class="list-group-item"><%#= rating average %></li>
+
+            <li class="list-group-item">
+              <small>
+                <% count = 0 %>
+                <% 5.times do %>
+                  <% if @appointment.rating > count %>
+                    <i class="fas fa-star"></i>
+                  <% else %>
+                    <i class="far fa-star"></i>
+                  <% end %>
+                  <% count += 1 %>
+                <% end %>
+              </small>
+              </li>
+            <li class="list-group-item"><%=@appointment.review_content%></li>
             <li class="list-group-item"><%= @appointment.description %></li>
             <% @appointment.categories.each do |category|%>
               <li class="list-group-item"><%= category.name%></li>
@@ -30,6 +44,7 @@
             <%= link_to "Edit this @appointment", edit_appointment_path(@appointment), class:'btn btn-primary' %>
           <% end %>
            <%= button_to "Cancel this @appointment", @appointment, method: :delete if policy(@appointment).destroy? %>
+           <%= link_to "Review this @appointment", review_appointment_path(@appointment), class:'btn btn-dark' %>
         </div>
       </div>
     <%# </div> %>
