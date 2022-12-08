@@ -1,51 +1,36 @@
 <h2 class='page-title text-center'>My Teacher Appointments<h2>
-<div class= 'container'>
-  <div class="row">
+<div class= 'container '>
+  <div class="row d-flex justify-content-center">
     <% @appointments.each do |appointment| %>
-    <%= link_to appointment_path(appointment) do %>
     <div class="col-md-4">
-      <div class="card">
+      <div class="card student-card-image-rounded mb-5" >
         <% if appointment.user.avatar_image.attached? %>
-          <%= cl_image_tag appointment.user.avatar_image.key, :gravity=>"face", :height=>300, :width=>400, :crop=>"thumb", class: 'card-image-rounded  h-100' %>
-        <% else %>
-          <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-image-rounded'%>
-        <% end %>
+            <%= cl_image_tag appointment.user.avatar_image.key, :gravity=>"face", :height=>300, :width=>400, :crop=>"thumb", class: 'card-image-rounded  h-100' %>
+          <% else %>
+            <%= image_tag ('https://www.olivetreefilmes.com.br/wp-content/uploads/2021/05/Como-fazer-edicao-de-videos-para-Youtube-1.jpg'), class:'card-image-rounded'%>
+          <% end %>
         <div class="card-body">
-          <h5 class="card-title"><%= appointment.teacher.user.first_name %></h5>
+          <h5 class="card-title"><%= appointment.user.first_name %></h5>
+          <p class="card-text card-font"><%=appointment.description%></p>
+        </div>
           <ul class="list-group list-group-flush">
-            <div class="list-group-item d-flex justify-content-between">
-              <div>
-                <li class="card-font"><% appointment.teacher.categories.pluck(:name).each do |category| %>
-                    <%=category%>
-                  <% end %>
-              </div>
-              <div>
-              <%appointment.teacher.categories.pluck(:image).each do |cat_image|%>
-                <img src="<%=cat_image%>" alt="" style="width:20px;height:20px;">
-                <% end %>
-            </div>
-            </div>
-              </li>
-              <li class="list-group-item card-font "><%= number_to_currency(appointment.teacher.price, unit: 'R$') %></li>
-              <li class="list-group-item card-font"><%#= rating average %></li>
-              <li class="list-group-item card-font"><%= appointment.description %></li>
             <div>
               <% appointment.categories.each do |category|%>
                 <li class="list-group-item card-font"><%= category.name%></li>
                 <%end%>
             </div>
+              <%# <li class="list-group-item card-font"><%= rating average %></li>
               <li class="list-group-item card-font" ><%= appointment.start_time.strftime('Data: %F | Hora: %T') %></li>
               <li class="list-group-item card-font"><%= appointment.end_time.strftime('Data: %F | Hora: %T') %></li>
               <li class="list-group-item card-font"><%= appointment.remote ? 'Remote' : 'In-Person' %></li>
+              <li class="list-group-item card-font "><%= number_to_currency(appointment.teacher.price, unit: 'R$') %></li>
             </ul>
-            <p class="text-center m-3"><% if policy(appointment).edit? %>
-              <%= link_to "Edit this appointment", edit_appointment_path(appointment), class:'btn btn-main' %>
-              <%= link_to "Cancel this appointment", appointment, method: :delete, class:'btn btn-main' if policy(appointment).destroy?   %></p>
-            <% end %>
-        </div>
+           <p class="text-center m-3"><%= link_to "Appointment Details", appointment_path(appointment), class:'btn btn-main' %>
+
+
+
       </div>
     </div>
-    <% end %>
     <% end %>
   </div>
 </div>

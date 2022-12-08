@@ -17,10 +17,10 @@
       <%= category.name %>
       <%end%> </p>
       <p><strong>Description:</strong> <%= @appointment.description %> </p>
-      <p><strong>Price:</strong> <%= humanized_money_with_symbol(@appointment.teacher.price_cents) %></p>
-      <p><strong> <%=  @appointment.start_time.strftime("Date: %F | Starting Time: %T") %> </strong></p>
+      <p><strong>Price:</strong> <%= number_to_currency(@appointment.teacher.price_cents / 100.0, unit: "R$ ", separator: ",", delimiter: ".") %></p>
+      <p><strong>Date: </strong><%=  @appointment.start_time.strftime('%A, %B %d, %Y at %H:%M %p') %></p>
       <p><strong>Location: </strong><%= @appointment.remote ? "Remote" : "In person" %></p>
-      <button id="pay" class="btn btn-dark">Purchase</button>
+      <button id="pay" class="btn btn-main">Purchase</button>
       <script src="https://js.stripe.com/v3/"></script>
       <script>
       const paymentButton = document.getElementById('pay');
