@@ -10,8 +10,8 @@
      <br> <strong>Seller:</strong> <%= @appointment.teacher.user.first_name %>
      <br> <strong>Price:</strong> <%= @appointment.teacher.price %>
      <br> <strong>Description:</strong>  <%= @appointment.description %>
-     <br> <strong>Time:</strong> <%= @appointment.start_time.strftime("%A, %d/%m/%Y, %H:%M") %>
-    <br> <strong>Location:</strong>  <%= @appointment.remote ? "Remote" : "In Person" %>
+     <br> <strong>Time:</strong> <%= @appointment.start_time.strftime('%A, %B %d, %Y at %H:%M %p') %>
+    <br> <strong>Location:</strong>  <%= @appointment.remote ? "Remote" : "In person" %>
     </p>
   </div>
   <div class="card card-image-rounded mb-5" >
