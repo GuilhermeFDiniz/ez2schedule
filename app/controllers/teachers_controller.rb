@@ -18,7 +18,7 @@ class TeachersController < ApplicationController
       Category.where(id: params[:teacher][:categories]).each do |category|
         TeacherCategory.create!(teacher: @teacher, category: category)
       end
-      redirect_to teacher_appointments_path(@teacher), notice: "Your teacher profile was successfully created."
+      redirect_to root_path, notice: "Your teacher profile was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -45,7 +45,9 @@ class TeachersController < ApplicationController
   end
 
   def teacher_params
-    params.require(:teacher).permit(:monday,
+    params.require(:teacher).permit(:start_time,
+                                    :end_time,
+                                    :monday,
                                     :tuesday,
                                     :wednesday,
                                     :thursday,

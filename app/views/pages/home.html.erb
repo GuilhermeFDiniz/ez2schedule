@@ -11,7 +11,7 @@
   <div class="cards-grid" id='cards'>
    <% @teachers.each do |teacher| %>
     <div>
-      <div class="card mb-4 card-home ">
+      <div class="card card-home ">
         <% if teacher.teacher_video.attached? %>
           <%= cl_video_tag teacher.teacher_video.key, class: 'teacher-video card-image-rounded ', controls: true, width: 300, height: 200, crop: "fill" %>
         <% elsif teacher.user.avatar_image.attached? %>

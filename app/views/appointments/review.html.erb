@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12 m-auto">
+      <h1 class="page-title">Review Your Appointment with <%= "#{@appointment.teacher.user.first_name} on #{@appointment.start_time.strftime('Data: %F | Hora: %T')}" %></h1>
+      <div class='review-card'>
+        <%= simple_form_for @appointment, url: review_appointment_path(@appointment), method: :patch do |f| %>
+          <%= f.input :rating, collection: 0..5 %>
+          <%= f.input :review_content %>
+          <%= f.submit 'Submit Review', class: 'btn btn-dark' %>
+        <% end %>
+        <%= link_to "Back to My Appointments", student_appointments_appointment_path %>
+      </div>
+    </div>
+  </div>
+</div>
