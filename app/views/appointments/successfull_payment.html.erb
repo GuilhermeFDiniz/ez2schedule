@@ -8,7 +8,10 @@
   <div class='d-flex justify-content-center align-items-center mt-4 mb-1'>
     <h4> You'll receive an e-mail with more details about your appointment with <strong><%= @appointment.teacher.user.first_name%></strong>. 💻</h4>
   </div>
-  <div class="d-flex justify-content-center align-items-center">
+  <div class="d-flex justify-content-center align-items-center mt-5">
     <h2 class="fw-bold"><%= image_tag 'https://illustoon.com/photo/7501.png', class: 'rounded-circle', :height=>300, :width=>300%></h2>
+  </div>
+  <div class="d-flex justify-content-center align-items-center mt-5">
+    <%= link_to "Back to Home Page", root_path, class:"btn btn-main w-15 mt-4" %>
   </div>
 </div>
