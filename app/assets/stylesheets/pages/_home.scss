@@ -6,3 +6,10 @@
   gap: 24px;
   padding-left: 20px;
 }
+
+
+@media(max-width: 1200px) {
+  .container-home{
+    display: none;
+  }
+}
